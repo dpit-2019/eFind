@@ -1,0 +1,34 @@
+<html>
+
+<body>
+
+
+<input type="text" id="a" name="Primul Numar" value="0"><br>
+<input type="text" id="b" name="Al doile numar" value="0"><br>
+
+<button onclick="addup();">SUMA</button>
+
+<p id="rezz">Rezultat</p>
+
+</body>
+<script>
+function addup()
+{
+  var PR =parseInt(document.getElementById("a").value);
+  var SE =parseInt(document.getElementById("b").value);
+  var data=PR+SE;
+  document.getElementById("rezz").innerHTML = data;
+  /*var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+
+          var response = xhttp.responseText;
+          console.log("ok"+response);
+      }
+  };
+  xhttp.open("GET", "http://localhost:8080/greeting?a=12&b=23", true);
+
+  xhttp.send();*/
+}
+</script>
+</html>
