@@ -1,0 +1,38 @@
+<html>
+
+<body>
+
+
+<input type="text" id="a" name="Primul Numar" value="0"><br>
+<input type="text" id="b" name="Al doile numar" value="0"><br>
+
+<button onclick="addup();">SUMA</button>
+
+<p id="rezz">Rezultat</p>
+
+</body>
+<script>
+function addup()
+{
+  var PR =parseInt(document.getElementById("a").value);
+  var SE =parseInt(document.getElementById("b").value);
+  var data=PR+SE;
+  ///document.getElementById("rezz").innerHTML = data;
+  var request = new XMLHttpRequest()
+
+  var urlString =
+
+
+// Open a new connection, using the GET request on the URL endpoint
+request.open('GET', "http://localhost:8080/addup?a="+PR+"&b="+SE+"", true)
+
+request.onload = function () {
+  var sum = JSON.parse(this.response);
+  document.getElementById("rezz").innerHTML = sum;
+  }
+
+  // Send request
+  request.send()
+}
+</script>
+</html>
