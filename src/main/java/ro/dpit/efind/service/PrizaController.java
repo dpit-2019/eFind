@@ -1,4 +1,4 @@
-package eFind;
+package ro.dpit.efind.service;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

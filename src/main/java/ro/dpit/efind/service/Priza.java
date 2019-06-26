@@ -1,4 +1,4 @@
-package eFind;
+package ro.dpit.efind.service;
 
 public class Priza {
     private String name;
