@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>eFind</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #map {
         height: 100%;
       }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
@@ -20,15 +17,63 @@
   </head>
   <body>
     <div id="map"></div>
-    <script>
-// Initialize and add the map
+<script>
+var map;
+function MarkerControl(controlDiv, map) {
+var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to add a pointer';
+        controlDiv.appendChild(controlUI);
 
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Add Marker';
+        controlUI.appendChild(controlText);
+	controlUI.addEventListener('click', function() {
+		var marker = new google.maps.Marker({
+			position: {lat:46.750380, lng:23.580522},
+			map: map,
+			title: 'New Pointer'
+		});
+	});
+}
 function initMap() {
  var map = new google.maps.Map(document.getElementById('map'), {
  zoom: 15,
  center : {lat:46.769459, lng:23.589889},
+ mapTypeControl: true,
+ mapTypeControlOptions: {
+	style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+	position: google.maps.ControlPosition.TOP_CENTER
+ },
+ zoomControl: true,
+ zoomControlOptions: {
+	 position: google.maps.ControlPosition.RIGHT_BOTTOM
+ },
+ scaleControl: true,
+ streetViewControl: true,
+ streetViewControlOptions: {
+	position: google.maps.ControlPosition.RIGHT_BOTTOM
+ },
+ fullscreenControl: true
  });
  setMarkers(map);
+ var markerControlDiv = document.createElement('div');
+ var markerControl = new MarkerControl(markerControlDiv, map);
+ markerControlDiv.index = 1;
+ map.controls[google.maps.ControlPosition.TOP_LEFT].push(markerControlDiv);
 }
 var neighborhoods = [
  ['Zorilor', 46.754922, 23.587724, 10],
@@ -65,9 +110,14 @@ function setMarkers(map) {
 		zIndex: neighborhood[3]
 	});
  }
+ var basicMarker = new google.maps.Marker({
+	position: {lat: 46.760639, lng: 23.587515},
+	map: map,
+	title: 'Gradina Botanica'
+ });
 }
-
 </script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6bZh0b2C5uo_LiaUr71JAnzzjWheI6SI&callback=initMap"
     async defer></script>
   </body>
