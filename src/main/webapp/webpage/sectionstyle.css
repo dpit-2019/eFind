@@ -1,0 +1,116 @@
+body {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+div.section {
+	background-color: #FFFFFF;
+	position: absolute;
+	width: 400px;
+	height: 650px;
+	box-shadow: 8px 0px 3px rgba(0, 0, 0, 0.1);
+	z-index: 5;
+}
+div.image {
+	background: url('whoa.jpeg') no-repeat;
+	background-size: 100%;
+	width: 400px;
+	height: 200px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	cursor: zoom-in;
+}
+div.microlocation {
+	background-color: #FFFFFF;
+	width: 300px;
+	height: 30px;
+	padding: 20px;
+	padding-bottom: 5px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-size: 23px;
+}
+div.macrolocation {
+	background-color: #FFFFFF;
+	width: 360px;
+	height: 50px;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 8px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-size: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+div.otype {
+	width: 360px;
+	height: 80px;
+	padding: 20px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+div.otypetext {
+	background-color: #FFFFFF;
+	margin-top: 30px;
+	margin-left: 20px;
+	width: 50px;
+	height: 28px;
+	padding: 10px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-size: 23px;
+	border: 1px solid #000;
+	border-radius: 10px;
+	float: left;
+}
+div.otypesymbol {
+	margin-top: 20px;
+	margin-right: 85px;
+	width: 70px;
+	height: 70px;
+	background: url('yes.gif') no-repeat;
+	background-size: 100%;
+	border: 1px solid #000;
+	border-radius: 50%;
+	float: right;
+}
+div.description {
+	background-color: #FFFFFF;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-size: 18px;
+	padding: 5px;
+	margin-top: 30px;
+	margin-left: 25px;
+}
+div.report {
+	background-color: #FFFFFF;
+	height: 70px;
+	width: 400px;
+}
+div.reportsymbol {
+	margin-left: 25px;
+	margin-top: 70px;
+	height: 50px;
+	width: 50px;
+	border: 1px solid #000;
+	border-radius: 50%;
+	background: url('report.png') no-repeat;
+	background-size: 100%;
+	background-color: #FFFFFF;
+	float: left;
+}
+div.reporttext {
+	background-color: #FFFFFF;
+	padding: 5px;
+	margin-top: 85px;
+	margin-right: 250px;
+	float: right;
+	width: 50px;
+	height: 17px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-size: 16px;
+	border: 0.5px solid #000;
+	border-radius: 10px;
+}

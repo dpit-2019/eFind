@@ -53,7 +53,7 @@ function initMap() {
  var markerControlDiv = document.createElement('div');
  var markerControl = new MarkerControl(markerControlDiv, map);
  markerControlDiv.index = 1;
- map.controls[google.maps.ControlPosition.TOP_LEFT].push(markerControlDiv);
+ map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(markerControlDiv);
 }
 var neighborhoods = [
  ['Zorilor', 46.754922, 23.587724, 10],
