@@ -29,12 +29,3 @@ public class App extends SpringBootServletInitializer {
 
     private static Class<App> applicationClass = App.class;
 }
-
-@RestController
-class GreetingController {
-
-    @RequestMapping("/hello/{name}")
-    String hello(@PathVariable String name) {
-        return "Hello, " + name + "!";
-    }
-}

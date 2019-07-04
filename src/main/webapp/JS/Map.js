@@ -30,25 +30,6 @@ var controlText = document.createElement('div');
 	});
 }
 
-
-map = google.maps.event.addListener(map, 'click', function(event) {
-  placeMarker(map, event.latLng);
-});
-
-function placeMarker(map, location) {
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
-  var infowindow = new google.maps.InfoWindow({
-    content: 'Latitude: ' + location.lat() +
-    '<br>Longitude: ' + location.lng()
-  });
-  infowindow.open(map,marker);
-}
-
-
-
 function initMap() {
  var map = new google.maps.Map(document.getElementById('map'), {
  zoom: 15,
@@ -89,18 +70,20 @@ var neighborhoods = [
  ['Dambul Rotund', 46.784702, 23.568945, 10]
 ];
 
-var Info = ["Priza123", "Starda Mea", "Cluj Napoca", "Aici ii descriere"];
+var Info = ["Priza123", "Strada Mea", "Cluj Napoca", "Aici ii descriere"];
 
 
 function gettitle(marker)
 {
-  document.getElementById('imagine').style.background = "url('cluj-image.webp') no-repeat";
-  document.getElementById('TipuPrizei').style.background = "url('outletType.png') no-repeat";
+  document.getElementById('imagine').style.background = "url('CSS/img/cluj-image.webp') no-repeat";
+  document.getElementById('imagine').style.backgroundSize = "100% 110%";
+  document.getElementById('TipuPrizei').style.background = "url('CSS/img/outletType.png') no-repeat";
+  document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
   document.getElementById('TipuPrizei').innerHTML = " ";
   document.getElementById('sectiune').style.zIndex = 1;
   document.getElementById('NumeLocal').innerHTML = Info[0];
-  document.getElementById('NumeStarda').innerHTML = Info[1] + ", " + Info[2];
-  document.getElementById('NumeStarda').innerHTML = Info[1] + ", " + Info[2];
+  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
+  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
   document.getElementById('DescrierePriza').innerHTML = Info[3];
 }
 

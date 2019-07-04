@@ -8,12 +8,12 @@ div.section {
 	background-color: #FFFFFF;
 	position: absolute;
 	width: 400px;
-	height: 650px;
+	height: 100%;
 	box-shadow: 8px 0px 3px rgba(0, 0, 0, 0.1);
 	z-index: -1;
 }
 div.image {
-	background: url('whoa.jpeg') no-repeat;
+	background: url('img/whoa.jpeg') no-repeat;
 	background-size: 100%;
 	width: 100%;
 	height: 200px;
@@ -51,7 +51,8 @@ div.otype {
 	padding-bottom: 8px;
 }
 div.otypetext {
-	background-color: #FFFFFF;
+	background: url('img/cluj-image.webp');
+	background-size: 100%;
 	margin-top: 30px;
 	margin-left: 20px;
 	width: 50px;
@@ -63,7 +64,6 @@ div.otypetext {
 	border: 1px solid #000;
 	border-radius: 10px;
 	float: left;
-	object-fit: contain;
 	background-size: cover;
 }
 div.otypesymbol {
@@ -71,7 +71,7 @@ div.otypesymbol {
 	margin-right: 85px;
 	width: 70px;
 	height: 70px;
-	background: url('yes.gif') no-repeat;
+	background: url('img/yes.gif') no-repeat;
 	object-fit: contain;
 	background-size: 100%;
 	border: 1px solid #000;
@@ -99,7 +99,7 @@ div.reportsymbol {
 	width: 50px;
 	border: 1px solid #000;
 	border-radius: 50%;
-	background: url('report.png') no-repeat;
+	background: url('img/report.png') no-repeat;
 	background-size: 100%;
 	background-color: #FFFFFF;
 	float: left;
