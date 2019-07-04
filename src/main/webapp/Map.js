@@ -10,8 +10,8 @@ var controlUI = document.createElement('div');
         controlUI.style.textAlign = 'center';
         controlUI.title = 'Click to add a pointer';
         controlDiv.appendChild(controlUI);
-		
-		
+
+
 var controlText = document.createElement('div');
         controlText.style.color = 'rgb(25,25,25)';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
@@ -29,6 +29,26 @@ var controlText = document.createElement('div');
 		});
 	});
 }
+
+
+map = google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(map, event.latLng);
+});
+
+function placeMarker(map, location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() +
+    '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+}
+
+
+
 function initMap() {
  var map = new google.maps.Map(document.getElementById('map'), {
  zoom: 15,
@@ -68,6 +88,22 @@ var neighborhoods = [
  ['Gruia', 46.777676, 23.578643, 10],
  ['Dambul Rotund', 46.784702, 23.568945, 10]
 ];
+
+var Info = ["Priza123", "Starda Mea", "Cluj Napoca", "Aici ii descriere"];
+
+
+function gettitle(marker)
+{
+  document.getElementById('imagine').style.background = "url('cluj-image.webp') no-repeat";
+  document.getElementById('TipuPrizei').style.background = "url('outletType.png') no-repeat";
+  document.getElementById('TipuPrizei').innerHTML = " ";
+  document.getElementById('sectiune').style.zIndex = 1;
+  document.getElementById('NumeLocal').innerHTML = Info[0];
+  document.getElementById('NumeStarda').innerHTML = Info[1] + ", " + Info[2];
+  document.getElementById('NumeStarda').innerHTML = Info[1] + ", " + Info[2];
+  document.getElementById('DescrierePriza').innerHTML = Info[3];
+}
+
 function setMarkers(map) {
  var image = {
  url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
@@ -88,7 +124,9 @@ function setMarkers(map) {
 		shape: shape,
 		title: neighborhood[0],
 		zIndex: neighborhood[3]
-	});
+	}).addListener('click', function(event){
+    gettitle(event);
+  });
  }
  var basicMarker = new google.maps.Marker({
 	position: {lat: 46.760639, lng: 23.587515},
