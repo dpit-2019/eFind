@@ -75,9 +75,9 @@ var Info = ["Priza123", "Strada Mea", "Cluj Napoca", "Aici ii descriere"];
 
 function gettitle(marker)
 {
-  document.getElementById('imagine').style.background = "url('CSS/img/cluj-image.webp') no-repeat";
+  document.getElementById('imagine').style.background = "url('img/cluj-image.webp') no-repeat";
   document.getElementById('imagine').style.backgroundSize = "100% 110%";
-  document.getElementById('TipuPrizei').style.background = "url('CSS/img/outletType.png') no-repeat";
+  document.getElementById('TipuPrizei').style.background = "url('img/outletType.png') no-repeat";
   document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
   document.getElementById('TipuPrizei').innerHTML = " ";
   document.getElementById('sectiune').style.zIndex = 1;
