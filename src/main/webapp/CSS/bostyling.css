@@ -1,0 +1,262 @@
+html {
+	margin: 0;
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	overflow: hidden;
+	margin: 0;
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient(-90deg, #327aed, #d2e0f7);
+}
+
+.leftside {
+	display: inline-block;
+	height: 100%;
+	width: 20%;
+	margin: 0px;
+	border-right: 3px solid #000;
+	position: relative;
+	z-index: 4;
+	float: left;
+}
+
+.selectionside {
+	height: 90%;
+	width: 100%;
+	bottom: 0;
+	z-index: 5;
+}
+
+.topside {
+	width: 100%;
+	height: 10%;
+	top: 0;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	z-index: 3;
+	float: right;
+}
+
+.logo {
+	height: 50px;
+	width: 100px;
+	background: url("../img/logo.png") no-repeat;
+	background-size: 100%;
+	margin-left: 30px;
+	float: left;
+}
+
+.text {
+	height: 0px;
+	width: 300px;
+	font-family: Cambria,Georgia,serif;
+	font-size: 30px;
+	float: right;
+	margin-top: 10px;
+}
+
+.buttonsection {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	font-family: Cambria,Georgia,serif;
+	font-size: 20px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	margin-top: 12px;
+	cursor: pointer;
+}
+
+.buttonsection:hover {
+	color: #ff0000;
+}
+
+.list {
+	width: 80%;
+	height: 90%;
+	margin-top: 5%;
+	margin-left: 20%;
+	float: right;
+	position: absolute;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	z-index: 3;
+}
+
+.filtersection {
+	width: 100%;
+	height: 35px;
+	border-right: 2px solid rgba(0,0,0,0.5);
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	padding: 1px;
+	position: relative;
+	top: 7px;
+}
+
+.filtericon {
+	background: url("../img/filter.png") no-repeat;
+	background-size: 100%;
+	height: 25px;
+	width: 25px;
+	padding: 5px;
+	float: left;
+	cursor: pointer;
+}
+
+.filtertext {
+	width: 40px;
+	height: 25px;
+	padding: 5px;
+	font-family: Cambria,Georgia,serif;
+	font-size: 15px;
+	position: absolute;
+	left: 40px;
+	top: 5px;
+}
+
+.basicoutletcomponent {
+	width: 100%;
+	height: 60px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	position: relative;
+	z-index: 8;
+}
+
+.basicoutlet {
+	height: 60px;
+	width: 60px;
+	background: url("../img/basicoutlet.png") no-repeat;
+	background-size: 100%;
+	position: absolute;
+	z-index: 10;
+}
+
+.latitudetext {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 100px;
+	top: 10px;
+	z-index: 10;
+}
+
+.longitudetext {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 100px;
+	top: 35px;
+	z-index: 10;
+}
+
+.latitude {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 230px;
+	top: 10px;
+	z-index: 10;
+}
+
+.longitude {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 230px;
+	top: 35px;
+	z-index: 10;
+}
+
+.name {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 18px;
+	position: absolute;
+	left: 350px;
+	top: 20px;
+	z-index: 10;
+}
+
+.adresstext {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 18px;
+	position: absolute;
+	left: 600px;
+	top: 20px;
+	z-index: 10;
+}
+
+.adress {
+	height: auto;
+	width: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 660px;
+	top: 21px;
+	z-index: 10;
+}
+
+.pendingoutletcomponent {
+	width: 100%;
+	height: 60px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	position: relative;
+	z-index: 8;
+}
+
+.checkmark {
+	width: 50px;
+	height: 50px;
+	background: url("../img/checkmark.png") no-repeat;
+	background-size: 100%;
+	z-index: 10;
+	position: absolute;
+	right: 100px;
+	top: 5px;
+	cursor: pointer;
+}
+
+.crossmark{
+	width: 50px;
+	height: 50px;
+	background: url("../img/crossmark.png") no-repeat;
+	background-size: 100%;
+	position: absolute;
+	z-index: 10;
+	right: 40px;
+	top: 5px;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: #b8d3ff;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #00ff1e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #172c4f;
+}
