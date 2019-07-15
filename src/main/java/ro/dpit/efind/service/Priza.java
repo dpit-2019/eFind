@@ -4,6 +4,33 @@ public class Priza {
     private String name;
     private long id;
     private long tip;
+    private String Descriere;
+    private float lat;
+    private float lng;
+
+    public String getDescriere() {
+        return Descriere;
+    }
+
+    public void setDescriere(String descriere) {
+        Descriere = descriere;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
 
     public String getName() {
         return name;
