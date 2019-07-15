@@ -13,21 +13,22 @@
 			</div>
 		</div>
 		<div class="leftside">
-			<div class="selectionside">
-				<div class="buttonsection">
-				All Outlets
-				</div>
-				<div class="buttonsection">
-				Pending Requests
-				</div>
+			<div id="allOutletsButton">
+			All Outlets
+			</div>				
+			<div id="pendingOutletsButton">
+			Pending Requests
+			</div>
+			<div id="badOutletsButton">
+			Bad Outlets
 			</div>
 		</div>
-		<div class="list">
+		<div id="alloutletlist">
 			<div class="filtersection">
 				<div class="filtericon">
 				</div>
 				<div class="filtertext">
-				Filter
+				Sort
 				</div>
 			</div>
 			<div class="basicoutletcomponent">
@@ -54,34 +55,8 @@
 				<div class="adress">
 				Strada Republicii 109, Cluj-Napoca
 				</div>
-			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
+				<div class="editbutton">
+				EDIT
 				</div>
 			</div>
 			<div class="basicoutletcomponent">
@@ -108,59 +83,17 @@
 				<div class="adress">
 				Strada Republicii 109, Cluj-Napoca
 				</div>
-			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
+				<div class="editbutton">
+				EDIT
 				</div>
 			</div>
-			<div class="basicoutletcomponent">
-				<div class="basicoutlet">
+		</div>
+		<div id="pendingoutletlist">
+			<div class="filtersection">
+				<div class="filtericon">
 				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU ALL OUTLETS
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
+				<div class="filtertext">
+				Sort
 				</div>
 			</div>
 			<div class="pendingoutletcomponent">
@@ -187,34 +120,9 @@
 				<div class="adress">
 				Strada Republicii 109, Cluj-Napoca
 				</div>
-				<div class="checkmark">
+				<div id="pendingcheckmark">
 				</div>
-				<div class="crossmark">
-				</div>
-			</div>
-			<div class="basicoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU ALL OUTLETS
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
+				<div id="pendingcrossmark">
 				</div>
 			</div>
 			<div class="pendingoutletcomponent">
@@ -233,7 +141,7 @@
 				23.594853
 				</div>
 				<div class="name">
-				DEMO PENTRU PENDING
+				DEMO PENTRU PENDING1
 				</div>
 				<div class="adresstext">
 				Adress:
@@ -241,12 +149,21 @@
 				<div class="adress">
 				Strada Republicii 109, Cluj-Napoca
 				</div>
-				<div class="checkmark">
+				<div id="pendingcheckmark">
 				</div>
-				<div class="crossmark">
+				<div id="pendingcrossmark">
 				</div>
 			</div>
-			<div class="basicoutletcomponent">
+		</div>
+		<div id="badoutletlist">
+			<div class="filtersection">
+				<div class="filtericon">
+				</div>
+				<div class="filtertext">
+				Sort
+				</div>
+			</div>
+			<div class="badoutletcomponent">
 				<div class="basicoutlet">
 				</div>
 				<div class="latitudetext">
@@ -262,7 +179,7 @@
 				23.594853
 				</div>
 				<div class="name">
-				DEMO PENTRU ALL OUTLETS
+				DEMO PENTRU BAD
 				</div>
 				<div class="adresstext">
 				Adress:
@@ -270,197 +187,30 @@
 				<div class="adress">
 				Strada Republicii 109, Cluj-Napoca
 				</div>
-			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
+				<div id="badcheckmark">
 				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
+				<div id="badcrossmark">
 				</div>
 			</div>
-			<div class="basicoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU ALL OUTLETS
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
+		</div>
+		<div id="pendingconfirmationsection">
+			<div id="pendingconfirmationtext">
+			Are you sure you want to add it to All Outlets?
 			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
-				</div>
+			<div id="pconfirmationcheck">
 			</div>
-			<div class="basicoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU ALL OUTLETS
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
+			<div id="pconfirmationcross">
 			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
-				</div>
+		</div>
+		<div id="pendingrejectionsection">
+			<div id="pendingrejectiontext">
+			Are you sure you want to remove it from this list?
 			</div>
-			<div class="basicoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU ALL OUTLETS
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
+			<div id="prejectioncheck">
 			</div>
-			<div class="pendingoutletcomponent">
-				<div class="basicoutlet">
-				</div>
-				<div class="latitudetext">
-				Latitude:
-				</div>
-				<div class="longitudetext">
-				Longitude:
-				</div>
-				<div class="latitude">
-				46.756398
-				</div>
-				<div class="longitude">
-				23.594853
-				</div>
-				<div class="name">
-				DEMO PENTRU PENDING
-				</div>
-				<div class="adresstext">
-				Adress:
-				</div>
-				<div class="adress">
-				Strada Republicii 109, Cluj-Napoca
-				</div>
-				<div class="checkmark">
-				</div>
-				<div class="crossmark">
-				</div>
+			<div id="prejectioncross">
 			</div>
+		</div>
+		<script type="text/javascript" src="JS/BOScript.js"></script>
 	</body>
 </html>

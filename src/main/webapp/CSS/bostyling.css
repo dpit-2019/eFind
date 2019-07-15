@@ -12,6 +12,7 @@ body {
 	height: 100%;
 	width: 100%;
 	background-image: linear-gradient(-90deg, #327aed, #d2e0f7);
+	z-index: 0;
 }
 
 .leftside {
@@ -59,22 +60,53 @@ body {
 	margin-top: 10px;
 }
 
-.buttonsection {
+#allOutletsButton {
 	width: 100%;
 	height: 40px;
+	line-height: 40px;
 	text-align: center;
 	font-family: Cambria,Georgia,serif;
 	font-size: 20px;
 	border-bottom: 2px solid rgba(0,0,0,0.5);
-	margin-top: 12px;
+	background-color: #999999;
 	cursor: pointer;
 }
 
-.buttonsection:hover {
+#allOutletsButton:hover {
 	color: #ff0000;
 }
 
-.list {
+#pendingOutletsButton {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-family: Cambria,Georgia,serif;
+	font-size: 20px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	cursor: pointer;
+}
+
+#pendingOutletsButton:hover {
+	color: #ff0000;
+}
+
+#badOutletsButton {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-family: Cambria,Georgia,serif;
+	font-size: 20px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	cursor: pointer;
+}
+
+#badOutletsButton:hover {
+	color: #ff0000;
+}
+
+#alloutletlist {
 	width: 80%;
 	height: 90%;
 	margin-top: 5%;
@@ -83,7 +115,31 @@ body {
 	position: absolute;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	z-index: 3;
+	display: block;
+}
+
+#pendingoutletlist {
+	width: 80%;
+	height: 90%;
+	margin-top: 5%;
+	margin-left: 20%;
+	float: right;
+	position: absolute;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: none;
+}
+
+#badoutletlist {
+	width: 80%;
+	height: 90%;
+	margin-top: 5%;
+	margin-left: 20%;
+	float: right;
+	position: absolute;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: none;
 }
 
 .filtersection {
@@ -96,6 +152,7 @@ body {
 	padding: 1px;
 	position: relative;
 	top: 7px;
+	margin-bottom: 6px;
 }
 
 .filtericon {
@@ -104,7 +161,10 @@ body {
 	height: 25px;
 	width: 25px;
 	padding: 5px;
-	float: left;
+	position: absolute;
+	z-index: 10;
+	left: 5px;
+	bottom: 3px;
 	cursor: pointer;
 }
 
@@ -134,6 +194,7 @@ body {
 	background-size: 100%;
 	position: absolute;
 	z-index: 10;
+	cursor: pointer;
 }
 
 .latitudetext {
@@ -221,27 +282,163 @@ body {
 	z-index: 8;
 }
 
-.checkmark {
-	width: 50px;
-	height: 50px;
+.badoutletcomponent {
+	width: 100%;
+	height: 60px;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	position: relative;
+	z-index: 8;
+}
+
+#pendingcheckmark {
+	width: 45px;
+	height: 45px;
 	background: url("../img/checkmark.png") no-repeat;
 	background-size: 100%;
 	z-index: 10;
 	position: absolute;
 	right: 100px;
-	top: 5px;
+	top: 10px;
 	cursor: pointer;
 }
 
-.crossmark{
-	width: 50px;
-	height: 50px;
+#pendingcrossmark{
+	width: 45px;
+	height: 45px;
 	background: url("../img/crossmark.png") no-repeat;
 	background-size: 100%;
 	position: absolute;
 	z-index: 10;
 	right: 40px;
-	top: 5px;
+	top: 10px;
+	cursor: pointer;
+}
+
+#badcheckmark {
+	width: 45px;
+	height: 45px;
+	background: url("../img/checkmark.png") no-repeat;
+	background-size: 100%;
+	z-index: 10;
+	position: absolute;
+	right: 100px;
+	top: 10px;
+	cursor: pointer;
+}
+
+#badcrossmark {
+	width: 45px;
+	height: 45px;
+	background: url("../img/crossmark.png") no-repeat;
+	background-size: 100%;
+	position: absolute;
+	z-index: 10;
+	right: 40px;
+	top: 10px;
+	cursor: pointer;
+}
+
+.editbutton {
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	z-index: 10;
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size: 18px;
+	border: 4px solid #000;
+	color: white;
+	top: 15px;
+	right: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#pendingconfirmationsection {
+	height: 200px;
+	width: 400px;
+	position: absolute;
+	z-index: 15;
+	top: 200px;
+	left: 500px;
+	border: 5px solid #000;
+	background-color: #cce0ff;
+	display: none;
+}
+
+#pendingconfirmationtext {
+	font-family: Cambria,Georgia,serif;
+	font-size: 30px;
+	height: auto;
+	width: auto;
+	position: absolute;
+	top: 20px;
+	text-align: center;
+}
+
+#pconfirmationcheck {
+	background: url("../img/checkmark.png") no-repeat;
+	background-size: 100%;
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 120px;
+	left: 80px;
+	cursor: pointer;
+}
+
+#pconfirmationcross {
+	background: url("../img/crossmark.png") no-repeat;
+	background-size: 100%;
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 120px;
+	right: 80px;
+	cursor: pointer;
+}
+
+#pendingrejectionsection {
+	height: 200px;
+	width: 400px;
+	position: absolute;
+	z-index: 15;
+	top: 200px;
+	left: 500px;
+	border: 5px solid #000;
+	background-color: #cce0ff;
+	display: none;
+}
+
+#pendingrejectiontext {
+	font-family: Cambria,Georgia,serif;
+	font-size: 30px;
+	height: auto;
+	width: auto;
+	position: absolute;
+	top: 20px;
+	text-align: center;
+}
+
+#prejectioncheck {
+	background: url("../img/checkmark.png") no-repeat;
+	background-size: 100%;
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 120px;
+	left: 80px;
+	cursor: pointer;
+}
+
+#prejectioncross {
+	background: url("../img/crossmark.png") no-repeat;
+	background-size: 100%;
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 120px;
+	right: 80px;
 	cursor: pointer;
 }
 
