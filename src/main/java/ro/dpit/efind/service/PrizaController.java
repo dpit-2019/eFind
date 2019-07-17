@@ -1,84 +1,102 @@
 package ro.dpit.efind.service;
 
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
+import java.util.*;
 
 
 @RestController
-public class PrizaController {
+public class PrizaController  {
 
+
+    ConnectionPool connectionPool;
+    {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connectionPool = BasicConnectionPool
+                        .create("jdbc:postgresql://localhost:5432/EfindTestDB", "postgres", "password");
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                public final void run() {
+                    try {
+                        connectionPool.shutdown();
+                        System.out.println("Merge shutdown hook");
+                    } catch (SQLException e) {
+                        System.out.println("NU merge shutdown");
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (SQLException| ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     @RequestMapping("/getPriza")
     public Priza getDetails(@RequestParam(value="id") Long id) {
         Priza res = new Priza();
-        Connection c = null;
-        Statement stmt = null;
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/EfindTestDB",
-                            "postgres", "password");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            ResultSet rs = ((java.sql.Statement) stmt).executeQuery("SELECT * FROM \"prizaEfind\".\"detalii\" WHERE id=" + id + ";");
-
+            Statement stmt = null;
+            Connection conn = connectionPool.getConnection();
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"prizaEfind\".\"DetaliiPrize\" WHERE id=" + id + ";");
             while(rs.next()) {
                 res.setId(id);
                 res.setName(rs.getString("nume"));
                 res.setTip(rs.getInt("tip"));
                 res.setDescriere(rs.getString("descriere"));
-                res.setLat(rs.getFloat("lat"));
-                res.setLng(rs.getFloat("lng"));
-                rs.close();
-                stmt.close();
-                c.close();
-                return res;
+                res.setLat(rs.getDouble("lat"));
+                res.setLng(rs.getDouble("lng"));
+                res.setPending(rs.getInt("stare"));
+                res.setReports(rs.getInt("reports"));
             }
+            rs.close();
+            connectionPool.releaseConnection(conn);
+            stmt.close();
         } catch (Exception e) {
             System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+
         }
-        System.out.println("Operation done successfully");
         return res;
     }
+
+
+
     @RequestMapping("/getPointeri")
-    public Pointers getPrize(@RequestParam(value="lats") double lats,
-                             @RequestParam(value="lngs") double lngs,
-                             @RequestParam(value="latj") double latj,
-                             @RequestParam(value="lngj") double lngj ){
-        Pointers rez = new Pointers();
-        double[] lat= new double[350];
-        double[] lng= new double[350];
-        Connection c = null;
-        Statement stmt = null;
+    public List<MapPoint> getPrize(@RequestParam(value="lats") double lats,
+                         @RequestParam(value="lngs") double lngs,
+                         @RequestParam(value="latj") double latj,
+                         @RequestParam(value="lngj") double lngj ){
+        List<MapPoint> rez = new ArrayList<MapPoint>();
         try{
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/EfindTestDB",
-                            "postgres", "password");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            ResultSet rs = ((java.sql.Statement) stmt).executeQuery("SELECT lat, lng FROM \"prizaEfind\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT lat, lng FROM \"prizaEfind\".\"DetaliiPrize\" WHERE lat<"+lats+"AND lat>" +latj+
                     "AND lng<"+lngs+"AND lng>"+lngj+";");
             int t=0;
             while(rs.next())
             {
-                lat[t]=rs.getDouble("lat");
-                lng[t]=rs.getDouble("lng");
+                MapPoint to = new MapPoint();
+                to.setLng(rs.getDouble("lng"));
+                to.setLat(rs.getDouble("lat"));
+                rez.add(to);
                 t++;
             }
-            rez.setLatitude(lat);
-            rez.setLongitude(lng);
+            connectionPool.releaseConnection(conn);
         }catch(Exception e) {
             System.out.println("nu merge============================================");
+            e.printStackTrace();
         }
         return rez;
     }
+
+
+
     @RequestMapping("/addPriza")
     public void addPriza(@RequestParam(value = "nume") String Nume,
                         @RequestParam(value = "tip") int tip,
@@ -86,97 +104,97 @@ public class PrizaController {
                         @RequestParam(value = "lat") double Latitude,
                         @RequestParam(value = "lng") double Longitude){
 
-        Connection c = null;
-        Statement stmt = null;
         try{
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/EfindTestDB",
-                            "postgres", "password");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-             stmt.executeUpdate("INSERT INTO \"prizaEfind\".\"detalii\" VALUES (7,"+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+             stmt.executeUpdate("INSERT INTO \"prizaEfind\".\"DetaliiPrize\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
             stmt.close();
-            c.commit();
-            c.close();
+            conn.commit();
+            connectionPool.releaseConnection(conn);
         }catch(Exception e) {
             System.out.println("nu merge====================Adaugarea");
             e.printStackTrace();
         }
     }
+
+
+
+
     @RequestMapping("/getBackOfficeData")
-    public Prize getBackOfficeData()
+    public List<Priza> getBackOfficeData()
     {
-        int [] pending = new int[150];
-         int[] id = new int[150] ;
-         String[] Nume = new String[150] ;
-         int[] tip = new int[150]  ;
-         String[] Descriere =new String[150];
-         double[] lat = new double[150];
-         double[] lng = new double[150];
-        Prize rezulltat =  new Prize();
-        Connection c = null;
-        Statement stmt = null;
+        List<Priza> rez = new ArrayList<Priza>();
         try{
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/EfindTestDB",
-                            "postgres", "password");
-            c.setAutoCommit(false);
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+
+            conn.setAutoCommit(false);
             System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            ResultSet rs= stmt.executeQuery("select * FROM \"prizaEfind\".\"detalii\"");
-            int i=1;
+            stmt = conn.createStatement();
+            ResultSet rs= stmt.executeQuery("select * FROM \"prizaEfind\".\"DetaliiPrize\";");
             while(rs.next()) {
-                id[i] = rs.getInt("id");
-                Nume[i] = rs.getString("nume");
-                tip[i] = rs.getInt("tip");
-                Descriere[i] = rs.getString("descriere");
-                lat[i] = rs.getDouble("lat");
-                lng[i] = rs.getDouble("lng");
-                pending[i]=rs.getInt("pending");
-                i++;
+                Priza to = new Priza();
+                to.setId(rs.getInt("id"));
+                to.setName(rs.getString("nume"));
+                to.setTip(rs.getInt("tip"));
+                to.setDescriere(rs.getString("descriere"));
+                to.setLat(rs.getDouble("lat"));
+                to.setLng(rs.getDouble("lng"));
+                to.setPending(rs.getInt("stare"));
+                to.setReports(rs.getInt("reports"));
+                rez.add(to);
             }
             stmt.close();
-            c.close();
-            rezulltat.setId(id);
-            rezulltat.setNume(Nume);
-            rezulltat.setTip(tip);
-            rezulltat.setDescriere(Descriere);
-            rezulltat.setLat(lat);
-            rezulltat.setLng(lng);
-            rezulltat.setPending(pending);
+            connectionPool.releaseConnection(conn);
         }catch(Exception e) {
             System.out.println("=================BackOffice=============");
             e.printStackTrace();
         }
-        return rezulltat;
+        return rez;
 
     }
     @RequestMapping("/changeStatus")
     public void changeStatus (@RequestParam(value = "id") int id)
     {
-        Connection c = null;
-        Statement stmt = null;
         try{
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/EfindTestDB",
-                            "postgres", "password");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            stmt.executeUpdate("UPDATE \"prizaEfind\".\"detalii\" set pending = 0 WHERE id="+id+";");
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            stmt.executeUpdate("UPDATE \"prizaEfind\".\"DetaliiPrize\" set stare = 0 WHERE id="+id+";");
             stmt.close();
-            c.commit();
-            c.close();
+            conn.commit();
+            connectionPool.releaseConnection(conn);
         }catch(Exception e) {
             System.out.println("*=======*");
             e.printStackTrace();
         }
     }
-
+    @RequestMapping("/report")
+    public void report (@RequestParam(value = "id") int id)
+    {
+        try {
+            Connection conn = connectionPool.getConnection();
+            Connection conn2= connectionPool.getConnection();
+            Statement stmt = null;
+            Statement stmt2 = null;
+            conn.setAutoCommit(false);
+            conn2.setAutoCommit(false);
+            stmt2 = conn2.createStatement();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT reports FROM \"prizaEfind\".\"DetaliiPrize\" WHERE id = "+id+";");
+            int tot=1;
+            while(rs.next())
+                tot=rs.getInt("reports");
+            stmt.executeUpdate("UPDATE \"prizaEfind\".\"DetaliiPrize\" set reports = "+(tot+1)+" WHERE id="+id+";");
+            conn.commit();
+            connectionPool.releaseConnection(conn);
+            connectionPool.releaseConnection(conn2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
 

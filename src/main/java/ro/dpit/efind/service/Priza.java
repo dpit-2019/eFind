@@ -5,8 +5,26 @@ public class Priza {
     private long id;
     private long tip;
     private String Descriere;
-    private float lat;
-    private float lng;
+    private double lat;
+    private double lng;
+    private int pending;
+    private int reports;
+
+    public int getPending() {
+        return pending;
+    }
+
+    public void setPending(int pending) {
+        this.pending = pending;
+    }
+
+    public int getReports() {
+        return reports;
+    }
+
+    public void setReports(int reports) {
+        this.reports = reports;
+    }
 
     public String getDescriere() {
         return Descriere;
@@ -16,19 +34,19 @@ public class Priza {
         Descriere = descriere;
     }
 
-    public float getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(float lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public float getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(float lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
