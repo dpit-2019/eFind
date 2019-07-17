@@ -106,11 +106,11 @@ body {
 	color: #ff0000;
 }
 
-#alloutletlist {
+#list {
 	width: 80%;
 	height: 90%;
-	margin-top: 5%;
-	margin-left: 20%;
+	margin-top: 7px;
+	margin-left: 276px;
 	float: right;
 	position: absolute;
 	overflow-y: scroll;
@@ -118,33 +118,9 @@ body {
 	display: block;
 }
 
-#pendingoutletlist {
-	width: 80%;
-	height: 90%;
-	margin-top: 5%;
-	margin-left: 20%;
-	float: right;
-	position: absolute;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	display: none;
-}
-
-#badoutletlist {
-	width: 80%;
-	height: 90%;
-	margin-top: 5%;
-	margin-left: 20%;
-	float: right;
-	position: absolute;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	display: none;
-}
-
 .filtersection {
 	width: 100%;
-	height: 35px;
+	height: 40px;
 	border-right: 2px solid rgba(0,0,0,0.5);
 	border-bottom: 2px solid rgba(0,0,0,0.5);
 	font-family: Cambria,Georgia,serif;
@@ -152,7 +128,8 @@ body {
 	padding: 1px;
 	position: relative;
 	top: 7px;
-	margin-bottom: 6px;
+	margin-top: 59px;
+	margin-left: 276px;
 }
 
 .filtericon {
@@ -179,7 +156,7 @@ body {
 	top: 5px;
 }
 
-.basicoutletcomponent {
+#outletcomponent {
 	width: 100%;
 	height: 60px;
 	border-bottom: 2px solid rgba(0,0,0,0.5);
@@ -274,69 +251,6 @@ body {
 	z-index: 10;
 }
 
-.pendingoutletcomponent {
-	width: 100%;
-	height: 60px;
-	border-bottom: 2px solid rgba(0,0,0,0.5);
-	position: relative;
-	z-index: 8;
-}
-
-.badoutletcomponent {
-	width: 100%;
-	height: 60px;
-	border-bottom: 2px solid rgba(0,0,0,0.5);
-	position: relative;
-	z-index: 8;
-}
-
-#pendingcheckmark {
-	width: 45px;
-	height: 45px;
-	background: url("../img/checkmark.png") no-repeat;
-	background-size: 100%;
-	z-index: 10;
-	position: absolute;
-	right: 100px;
-	top: 10px;
-	cursor: pointer;
-}
-
-#pendingcrossmark{
-	width: 45px;
-	height: 45px;
-	background: url("../img/crossmark.png") no-repeat;
-	background-size: 100%;
-	position: absolute;
-	z-index: 10;
-	right: 40px;
-	top: 10px;
-	cursor: pointer;
-}
-
-#badcheckmark {
-	width: 45px;
-	height: 45px;
-	background: url("../img/checkmark.png") no-repeat;
-	background-size: 100%;
-	z-index: 10;
-	position: absolute;
-	right: 100px;
-	top: 10px;
-	cursor: pointer;
-}
-
-#badcrossmark {
-	width: 45px;
-	height: 45px;
-	background: url("../img/crossmark.png") no-repeat;
-	background-size: 100%;
-	position: absolute;
-	z-index: 10;
-	right: 40px;
-	top: 10px;
-	cursor: pointer;
-}
 
 .editbutton {
 	width: 60px;
@@ -354,93 +268,6 @@ body {
 	cursor: pointer;
 }
 
-#pendingconfirmationsection {
-	height: 200px;
-	width: 400px;
-	position: absolute;
-	z-index: 15;
-	top: 200px;
-	left: 500px;
-	border: 5px solid #000;
-	background-color: #cce0ff;
-	display: none;
-}
-
-#pendingconfirmationtext {
-	font-family: Cambria,Georgia,serif;
-	font-size: 30px;
-	height: auto;
-	width: auto;
-	position: absolute;
-	top: 20px;
-	text-align: center;
-}
-
-#pconfirmationcheck {
-	background: url("../img/checkmark.png") no-repeat;
-	background-size: 100%;
-	height: 60px;
-	width: 60px;
-	position: absolute;
-	top: 120px;
-	left: 80px;
-	cursor: pointer;
-}
-
-#pconfirmationcross {
-	background: url("../img/crossmark.png") no-repeat;
-	background-size: 100%;
-	height: 60px;
-	width: 60px;
-	position: absolute;
-	top: 120px;
-	right: 80px;
-	cursor: pointer;
-}
-
-#pendingrejectionsection {
-	height: 200px;
-	width: 400px;
-	position: absolute;
-	z-index: 15;
-	top: 200px;
-	left: 500px;
-	border: 5px solid #000;
-	background-color: #cce0ff;
-	display: none;
-}
-
-#pendingrejectiontext {
-	font-family: Cambria,Georgia,serif;
-	font-size: 30px;
-	height: auto;
-	width: auto;
-	position: absolute;
-	top: 20px;
-	text-align: center;
-}
-
-#prejectioncheck {
-	background: url("../img/checkmark.png") no-repeat;
-	background-size: 100%;
-	height: 60px;
-	width: 60px;
-	position: absolute;
-	top: 120px;
-	left: 80px;
-	cursor: pointer;
-}
-
-#prejectioncross {
-	background: url("../img/crossmark.png") no-repeat;
-	background-size: 100%;
-	height: 60px;
-	width: 60px;
-	position: absolute;
-	top: 120px;
-	right: 80px;
-	cursor: pointer;
-}
 
 ::-webkit-scrollbar {
 	width: 12px;
