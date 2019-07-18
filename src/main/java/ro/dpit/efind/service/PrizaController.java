@@ -53,6 +53,7 @@ public class PrizaController  {
                 res.setPending(rs.getInt("stare"));
                 res.setReports(rs.getInt("reports"));
             }
+            System.out.println("servicul e accesat");
             rs.close();
             connectionPool.releaseConnection(conn);
             stmt.close();
@@ -87,9 +88,10 @@ public class PrizaController  {
                 rez.add(to);
                 t++;
             }
+            System.out.println("merge getPointeri");
             connectionPool.releaseConnection(conn);
         }catch(Exception e) {
-            System.out.println("nu merge============================================");
+            System.out.println("nu merge==========================================getPointeri");
             e.printStackTrace();
         }
         return rez;

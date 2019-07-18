@@ -50,6 +50,15 @@ function initMap() {
  },
  fullscreenControl: true
  });
+ map.addListener('center_changed', function() {
+   /// alert(map.getBounds());
+   var bounds =  map.getBounds();
+   var ne = bounds.getNorthEast();
+   var sw = bounds.getSouthWest();
+   console.log(ne.lat() + " " + ne.lng());
+
+
+   });
  setMarkers(map);
  var markerControlDiv = document.createElement('div');
  var markerControl = new MarkerControl(markerControlDiv, map);
@@ -86,7 +95,6 @@ function gettitle(marker)
   document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
   document.getElementById('DescrierePriza').innerHTML = Info[3];
 }
-
 function setMarkers(map) {
  var image = {
  url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
@@ -98,19 +106,32 @@ function setMarkers(map) {
 	coords: [1, 1, 1, 20, 18, 20, 18, 1],
 	type: 'poly'
  };
- for (var i = 0; i < neighborhoods.length; i++) {
-	var neighborhood = neighborhoods[i];
-	var marker = new google.maps.Marker({
-		position: {lat: neighborhood[1], lng: neighborhood[2]},
-		map: map,
-		icon: image,
-		shape: shape,
-		title: neighborhood[0],
-		zIndex: neighborhood[3]
-	}).addListener('click', function(event){
-    gettitle(event);
-  });
+map.addListener('center_changed', function() {
+   /// alert(map.getBounds());
+   var bounds =  map.getBounds();
+   var ne = bounds.getNorthEast();
+   var sw = bounds.getSouthWest();
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log(JSON.parse(xhttp.responseText).name);
+   var data = JSON.parse(xhttp.responseText);
+   var i;
+   console.log(Object.keys(data).length);
+   for (i=0;i<=Object.keys(data).length;i++)
+   {
+     var neighborhood = neighborhoods[i];
+   	var marker = new google.maps.Marker({
+   		position: {lat:data[i].lat, lng: data[i].lng},
+   		map: map,
+   		icon: image,
+   		shape: shape})
+   }
  }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/getPointeri?lats="+ne.lat()+"&lngs="+ne.lng()+"&latj="+sw.lat()+"&lngj="+sw.lng(), true);
+ xhttp.send();
+ });
  var basicMarker = new google.maps.Marker({
 	position: {lat: 46.760639, lng: 23.587515},
 	map: map,
