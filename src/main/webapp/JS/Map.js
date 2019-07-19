@@ -82,19 +82,28 @@ var neighborhoods = [
 var Info = ["Priza123", "Strada Mea", "Cluj Napoca", "Aici ii descriere"];
 
 
-function gettitle(marker)
+function gettitle(id)
 {
-  document.getElementById('imagine').style.background = "url('img/cluj-image.webp') no-repeat";
-  document.getElementById('imagine').style.backgroundSize = "100% 110%";
-  document.getElementById('TipuPrizei').style.background = "url('img/outletType.png') no-repeat";
-  document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
-  document.getElementById('TipuPrizei').innerHTML = " ";
-  document.getElementById('sectiune').style.zIndex = 1;
-  document.getElementById('NumeLocal').innerHTML = Info[0];
-  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
-  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
-  document.getElementById('DescrierePriza').innerHTML = Info[3];
-}
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log(JSON.parse(xhttp.responseText).name);
+   var data = JSON.parse(xhttp.responseText);
+   document.getElementById('imagine').style.background = "url('img/cluj-image.webp') no-repeat";
+     document.getElementById('imagine').style.backgroundSize = "100% 110%";
+     document.getElementById('TipuPrizei').style.background = "url('img/outletType.png') no-repeat";
+     document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
+     document.getElementById('TipuPrizei').innerHTML = data.tip;
+     document.getElementById('sectiune').style.zIndex = 1;
+     document.getElementById('NumeLocal').innerHTML = data.name;
+     document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
+     document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
+     document.getElementById('DescrierePriza').innerHTML = data.descriere;
+ }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/getPriza?id="+id, true);
+ xhttp.send();
+ };
 function setMarkers(map) {
  var image = {
  url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
@@ -125,7 +134,11 @@ map.addListener('center_changed', function() {
    		position: {lat:data[i].lat, lng: data[i].lng},
    		map: map,
    		icon: image,
-   		shape: shape})
+   		shape: shape,
+   		title:""+data[i].id+""}).addListener('click', function(marker){
+
+        gettitle(parseInt(this.getTitle()));
+       });
    }
  }
  };

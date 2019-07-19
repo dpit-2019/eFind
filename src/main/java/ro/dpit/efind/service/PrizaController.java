@@ -77,12 +77,13 @@ public class PrizaController  {
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT lat, lng FROM \"prizaEfind\".\"DetaliiPrize\" WHERE lat<"+lats+"AND lat>" +latj+
+            ResultSet rs = stmt.executeQuery("SELECT lat, lng, id FROM \"prizaEfind\".\"DetaliiPrize\" WHERE lat<"+lats+"AND lat>" +latj+
                     "AND lng<"+lngs+"AND lng>"+lngj+";");
             int t=0;
             while(rs.next())
             {
                 MapPoint to = new MapPoint();
+                to.setId(rs.getInt("id"));
                 to.setLng(rs.getDouble("lng"));
                 to.setLat(rs.getDouble("lat"));
                 rez.add(to);
