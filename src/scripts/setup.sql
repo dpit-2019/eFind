@@ -6,7 +6,7 @@ CREATE DATABASE efind ;
 \c efind
 CREATE SCHEMA priza ;
 CREATE TABLE priza.detalii (
-id INT NOT NULL ,
+id SERIAL PRIMARY KEY ,
 nume TEXT ,
 tip VARCHAR (100) ,
 descriere TEXT ,
