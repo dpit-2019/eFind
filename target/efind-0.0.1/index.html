@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>eFind</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="CSS/mapstyle.css">
+	<link rel="stylesheet" type="text/css" href="CSS/sectionstyle.css">
+  </head>
+  <body>
+	<div class="section", id="sectiune">
+			<div class="image", id="imagine"></div>
+			<div class="microlocation", id="NumeLocal">
+				Numele localului
+			</div>
+			<div class="macrolocation", id="NumeStrada">
+				Strada
+				<br>
+				Localitatea
+			</div>
+			<div class="otype">
+				<div class="otypetext", id="TipuPrizei">
+					Type
+				</div>
+				<div class="otypesymbol", id="TipPriza">
+				</div>
+			</div>
+			<div class="description", id="DescrierePriza">
+				Descriere in legatura cu nevoia de consumatie etc.
+			</div>
+			<div class="report">
+				<div class="reportsymbol">
+				</div>
+				<div class="reporttext">
+					Report
+				</div>
+			</div>
+		<br>
+		<button type="button" id="butt">EXIT</button>
+
+		</div>
+	<div class="formAdaugare", id="formAdaugare">
+		<form>
+			<div class="numeLocal">
+				Numele localului:<br>
+				<input type="text" name="numeleLocal" id="nume">
+			</div>
+			<div class="stradaLocal", id="numele strazii">
+				Strada:<br>
+				<input type="text"><br>
+				Localitatea:<br>
+				<input type="text" name="localitatea">
+			</div>
+			<div class="descriere">
+				Descriere priza:<br>
+				<textarea name="descrierePriza"  id="descriere" ></textarea>
+			</div>
+			<div class="alege">
+				<fieldset>
+					<legend>Tipul de priza</legend>
+					<p>
+						<label>Priza</label>
+						<select id = "tipul">
+							<option value = "1">one</option>
+							<option value = "2">two</option>
+							<option value = "3">three</option>
+							<option value = "4">four</option>
+							<option value = "5">five</option>
+						</select>
+					</p>
+				</fieldset>
+
+			</div>
+			<input type="button" value="Salvare" id="submit">
+			<input type="button" value="Anulare" id="buttonAnulare">
+			<br>
+			<p id="lat">lat</p>
+			<p id="lng">lng</p>
+		</form>
+	</div>
+    <div id="map"></div>
+    <script type="text/javascript" src="JS/Map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6bZh0b2C5uo_LiaUr71JAnzzjWheI6SI&callback=initMap"
+    async defer></script>
+  </body>
+</html>

@@ -18,7 +18,7 @@ public class PrizaController  {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                        .create("jdbc:postgresql://localhost:5432/EfindTestDB", "postgres", "password");
+                        .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {
@@ -42,7 +42,7 @@ public class PrizaController  {
             Connection conn = connectionPool.getConnection();
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM \"prizaEfind\".\"DetaliiPrize\" WHERE id=" + id + ";");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"priza\".\"detalii\" WHERE id=" + id + ";");
             while(rs.next()) {
                 res.setId(id);
                 res.setName(rs.getString("nume"));
@@ -77,7 +77,7 @@ public class PrizaController  {
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT lat, lng, id FROM \"prizaEfind\".\"DetaliiPrize\" WHERE lat<"+lats+"AND lat>" +latj+
+            ResultSet rs = stmt.executeQuery("SELECT lat, lng, id FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
                     "AND lng<"+lngs+"AND lng>"+lngj+";");
             int t=0;
             while(rs.next())
@@ -111,7 +111,7 @@ public class PrizaController  {
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             stmt = conn.createStatement();
-             stmt.executeUpdate("INSERT INTO \"prizaEfind\".\"DetaliiPrize\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
+             stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
@@ -135,7 +135,7 @@ public class PrizaController  {
             conn.setAutoCommit(false);
             System.out.println("Opened database successfully");
             stmt = conn.createStatement();
-            ResultSet rs= stmt.executeQuery("select * FROM \"prizaEfind\".\"DetaliiPrize\";");
+            ResultSet rs= stmt.executeQuery("select * FROM \"priza\".\"detalii\";");
             while(rs.next()) {
                 Priza to = new Priza();
                 to.setId(rs.getInt("id"));
@@ -165,7 +165,7 @@ public class PrizaController  {
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE \"prizaEfind\".\"DetaliiPrize\" set stare = 0 WHERE id="+id+";");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set stare = 0 WHERE id="+id+";");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
@@ -186,11 +186,11 @@ public class PrizaController  {
             conn2.setAutoCommit(false);
             stmt2 = conn2.createStatement();
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT reports FROM \"prizaEfind\".\"DetaliiPrize\" WHERE id = "+id+";");
+            ResultSet rs = stmt.executeQuery("SELECT reports FROM \"priza\".\"detalii\" WHERE id = "+id+";");
             int tot=1;
             while(rs.next())
                 tot=rs.getInt("reports");
-            stmt.executeUpdate("UPDATE \"prizaEfind\".\"DetaliiPrize\" set reports = "+(tot+1)+" WHERE id="+id+";");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set reports = "+(tot+1)+" WHERE id="+id+";");
             conn.commit();
             connectionPool.releaseConnection(conn);
             connectionPool.releaseConnection(conn2);
