@@ -50,6 +50,39 @@ function initMap() {
  },
  fullscreenControl: true
  });
+document.getElementById("submit").addEventListener("click", function () {
+var nume = document.getElementById("nume").value;
+var descriere = document.getElementById("descriere").value;
+var tipul = document.getElementById("tipul").value;
+var lat = document.getElementById("lat").textContent;
+var lng = document.getElementById("lng").textContent;
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log
+ }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/addPriza?nume=%27"+nume+"%27&tip="+tipul+"&descriere=%27"+descriere+"%27&lat="+lat+"&lng="+lng, true);
+ xhttp.send();
+ });
+
+document.getElementById("buttonAnulare").addEventListener("click", function () {
+  document.getElementById('formAdaugare').style.zIndex = -1;
+});
+document.getElementById("butt").addEventListener("click", function () {
+  document.getElementById('sectiune').style.zIndex = -1;
+});
+
+google.maps.event.addListener(map, 'click', function(event) {
+   document.getElementById('formAdaugare').style.zIndex = 1;
+   document.getElementById('lat').innerHTML= event.latLng.lat();
+   document.getElementById('lng').innerHTML= event.latLng.lng();
+
+
+
+});
+
  map.addListener('center_changed', function() {
    /// alert(map.getBounds());
    var bounds =  map.getBounds();
@@ -129,7 +162,6 @@ map.addListener('center_changed', function() {
    console.log(Object.keys(data).length);
    for (i=0;i<=Object.keys(data).length;i++)
    {
-     var neighborhood = neighborhoods[i];
    	var marker = new google.maps.Marker({
    		position: {lat:data[i].lat, lng: data[i].lng},
    		map: map,
