@@ -3,11 +3,7 @@ var pendingOutletsButton = document.getElementById("pendingOutletsButton");
 var badOutletsButton = document.getElementById("badOutletsButton");
 var list = document.getElementById("list");
 
-class Priza {
-	var id;
-	
-}
-function createAllListComponent(priza) {
+function createAllListComponent() {
 	var listComponent = document.createElement("div");
 	listComponent.className = "outletcomponent";
 	var outletIcon = document.createElement("div");
@@ -43,18 +39,13 @@ function createAllListComponent(priza) {
 	listComponent.appendChild(adress);
 	var editButton = document.createElement("div");
 	editButton.className = "editbutton";
-	editButton.onclick = "editPriza("+priza.id");";
 	editButton.innerHTML += "EDIT";
 	listComponent.appendChild(editButton);
 	list.appendChild(listComponent);
 }
 
-function editPriza(id) {
-	alert(id);
-}
-createAllListComponent(priza);
-createAllListComponent(priza);
-createAllListComponent(priza);
-createAllListComponent(priza);
-createAllListComponent(priza);
+
+createAllListComponent();
+createAllListComponent();
+
 
