@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,3 +71,92 @@ font-size:15px;
 </p>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<title>HowTo</title>
+</head>
+<style>
+body {
+background-color:lightgrey;
+color:black;
+font-family:Arial;
+}
+p {
+font-size:15px;
+}
+</style>
+<body>
+<h1>Set-up Java</h1>
+<h2>1.Download JDK</h2>
+<ol type="a">
+<li> Download the zip file from this <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk12-downloads-5295953.html" target="_blank">link</a>. Make sure you download the right version for your OS.</li>
+<li> Extract the content.</li>
+</ol>
+<h2>2.Set up JAVA_HOME</h2>
+<ol type="a">
+<li> Right click on My Computer.</li>
+<li> Click on properties.</li>
+<li> On the left side click on Advanced system settings.</li>
+<li> Click on Environment Variables in the Advanced tab.</li>
+<li> Click on the top New button.</li>
+<li> At the variable name type JAVA_HOME.</li>
+<li> At the variable value enter the extracted jdk folder adress.</li>
+<li> Click Ok.</li>
+<li> In the bottom tab search for the variable named Path.</li>
+<li> Select it and click edit.</li>
+<li> In the variable value box add a ";" at the end of the text and then add the jdk bin folder adress.</li>
+<li> Check if everything works by using command prompt by typing in javac - version.
+</ol>
+<hr>
+<h1> Set-up Maven </h1>
+<h2>1. Download Apache Maven</h2>
+<ol type="a">
+<li> Download the binary zip archive from this <a href="https://maven.apache.org/download.cgi" target="_blank"> link </a>.</li>
+<li> Extract the archive's content.</li>
+</ol>
+<h2>2. Set up Maven variables</h2>
+<ol type="a">
+<li> Right click on My Computer.</li>
+<li> Click on properties.</li>
+<li> On the left side click on Advanced system settings.</li>
+<li> Click on Environment Variables in the Advanced tab.</li>
+<li> Click on the top New button.</li>
+<li> At the variable name type MAVEN_HOME.</li>
+<li> At the variable value enter the extracted maven folder adress.</li>
+<li> Click Ok.</li>
+<li> Click on the top New button.</li>
+<li> At the variable name type M2_HOME.</li>
+<li> At the variable value enter the extracted maven folder adress.</li>
+<li> Click Ok.</li>
+<li> In the bottom tab search for the variable named Path.</li>
+<li> Select it and click edit.</li>
+<li> In the variable value box add a ";" at the end of the text and then add the maven bin folder adress.</li>
+<li> Check if everything works by using command prompt by typing in mvn - version.
+</ol>
+<hr>
+<h1>Set-up Postgres</h1>
+<h2>1. Download PostgreSQL.</h2>
+<h2>2. When intall use:</h2>
+<p>-a simple password ("admin" or "password").</p>
+<p>-the default port ("5432").</p>
+<p>-the default host ("localhost").</p>
+<p>(don't use the stack builder installation)</p>
+<h2>3. To run the postgres console :</h2>
+<p>-go to your installation folder and enter the folder "scripts".</p>
+<p>-run "runpsql".</p>
+<p>-just press "ENTER" until "password for user postgres" shows up , then enter your password.</p>
+<p>(there is already a script for you, that will set you up).</p>
+<p>-type: \ir (copy and paste the link from eFind-scr-scripts) / (setup or db).sql</p>
+<p>(you have to change the \ from the link, to /) and then press ENTER.</p>
+<p>*first use the setup and after use db, after running both you are all set :)*</p>
+<h2>Additional software download links:</h2>
+<p><a href="https://www.jetbrains.com/idea/download/#section=windows" target="_blank">IntelliJ idea</a><br><a href="https://git-scm.com/downloads" target="_blank">Git</a>
+<br><a href="https://atom.io/" target="_blank">Atom</a> (for coding in HTML)<br>
+<a href="https://www.postgresql.org/download/" target="_blank">PostgreSQL</a><br>
+<a href="https://developer.android.com/studio/?gclid=Cj0KCQjwrdjnBRDXARIsAEcE5YlI8Q2rGQv0XrqUjrg9367DnElfYM0vJTxIoCocZHSXxcd1oYmtvmYaAjkIEALw_wcB" target="_blank">Android Studio</a><br>
+</p>
+</body>
+</html>
+>>>>>>> Recea
