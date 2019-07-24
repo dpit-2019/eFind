@@ -202,7 +202,7 @@ body {
 	font-family: Cambria,Georgia,serif;
 	font-size: 16px;
 	position: absolute;
-	left: 230px;
+	left: 200px;
 	top: 10px;
 	z-index: 20;
 }
@@ -213,7 +213,7 @@ body {
 	font-family: Cambria,Georgia,serif;
 	font-size: 16px;
 	position: absolute;
-	left: 230px;
+	left: 200px;
 	top: 35px;
 	z-index: 20;
 }
@@ -224,7 +224,7 @@ body {
 	font-family: Cambria,Georgia,serif;
 	font-size: 18px;
 	position: absolute;
-	left: 350px;
+	left: 37%;
 	top: 20px;
 	z-index: 20;
 }
@@ -265,6 +265,87 @@ body {
 	top: 10px;
 	right: 50px;
 	text-align: center;
+	cursor: pointer;
+}
+
+#checkmark {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	z-index: 20;
+	background: url("/efind-0.0.1/img/checkmark.png") no-repeat;
+	background-size: 100%;
+	right: 13%;
+	top: 5%;
+	cursor: pointer;
+}
+
+#crossmark {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	z-index: 20;
+	background: url("/efind-0.0.1/img/crossmark.png") no-repeat;
+	background-size: 100%;
+	right: 7%;
+	top: 5%;
+	cursor: pointer;
+}
+
+#badname {
+	width: auto;
+	height: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 37%;
+	top: 10px;
+	z-index: 20;
+}
+
+#reports {
+	width: auto;
+	height: auto;
+	font-family: Cambria,Georgia,serif;
+	font-size: 16px;
+	position: absolute;
+	left: 37%;
+	top: 30px;
+	z-index: 20;
+}
+
+#cover {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 55;
+	top: 0px;
+	left: 0px;
+}
+
+#dialogbox {
+	height: 30%;
+	width: 30%;
+	font-family: Cambria,Georgia,serif;
+	font-size: 32px;
+	text-align: center;
+	background-color: #8f8f8f;
+	position: absolute;
+	z-index: 57;
+	border: 3px solid #000;
+	border-radius: 13px;
+	left: 35%;
+	top: 30%;
+	line-height: 100px;
+}
+
+#dialogcheckmark {
+	height: 15%;
+	width: 15%;
+	background: url("/efind-0.0.1/img/checkmark.png") no-repeat;
+	background-size: 100%;
+	top: 70%;
+	left: 20%;
 	cursor: pointer;
 }
 

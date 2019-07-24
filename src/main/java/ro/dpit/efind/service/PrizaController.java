@@ -144,7 +144,7 @@ public class PrizaController  {
                 to.setDescriere(rs.getString("descriere"));
                 to.setLat(rs.getDouble("lat"));
                 to.setLng(rs.getDouble("lng"));
-                to.setPending(rs.getInt("stare"));
+                to.setPending(rs.getInt("status"));
                 to.setReports(rs.getInt("reports"));
                 rez.add(to);
             }
