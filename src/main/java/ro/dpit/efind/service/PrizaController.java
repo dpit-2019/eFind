@@ -188,11 +188,8 @@ public class PrizaController  {
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-<<<<<<< HEAD
             stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = 2 WHERE id="+id+";");
-=======
             stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = "+status+"WHERE id="+id+";");
->>>>>>> Cosmin2
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);

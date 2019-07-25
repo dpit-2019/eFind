@@ -36,26 +36,114 @@ request.addEventListener("load", populateOutletArray)
 
 request.send();
 
-function pendingCheckmarkClickable(checkmark) {
-	checkmark.addEventListener("click", makePendingCheckConfirmation);
-}
-
-function makePendingCheckConfirmation() {
-	var dialog = document.createElement('div');
-	dialog.id = "dialogbox";
-	dialog.innerHTML = "Add Outlet?";
-	
-	var dialogcheck = document.createElement('div');
-	dialogcheck.id = "dialogcheckmark";
-	dialogcheckid.addEventListener("click", function(){
+function pendingCheckmarkClickable(checkmark, oid) {
+	checkmark.addEventListener("click", function(){
+		var dialog = document.createElement('div');
+		dialog.id = "dialogbox";
+		dialog.innerHTML = "Add Outlet?";
 		
-	});
+		var dialogcheck = document.createElement('div');
+		dialogcheck.id = "dialogcheckmark";
+		dialogcheck.addEventListener("click", function(){
+			var httpreq = new XMLHttpRequest();
+			httpreq.open("GET", "http://localhost:8080/efind-0.0.1/changeStatus?id="+oid+"&status="+2, true);
+			httpreq.send();
+			document.body.removeChild(cover);
+			document.body.removeChild(dialog);
+			
+			location.reload();
+			pendingOutletsButton.click();
+		});
 	
-	var cover = document.createElement('div');
-	cover.id = "cover";
-	document.body.prepend(cover);
+		var dialogcross = document.createElement('div');
+			dialogcross.id = "dialogcrossmark";
+			dialogcross.addEventListener("click", function(){
+				document.body.removeChild(cover);
+				document.body.removeChild(dialog);
+		});
+	
+		var cover = document.createElement('div');
+		cover.id = "cover";
+		
+		dialog.appendChild(dialogcheck);
+		dialog.appendChild(dialogcross);
+		
+		document.body.prepend(dialog);
+		document.body.prepend(cover);
+	});
 }
 
+function pendingCrossmarkClickable(crossmark, pid){
+	crossmark.addEventListener("click", function(){
+		var dialog = document.createElement('div');
+		dialog.id = "dialogbox";
+		dialog.innerHTML = "Reject request?";
+		
+		var dialogcheck = document.createElement('div');
+		dialogcheck.id = "dialogcheckmark";
+		dialogcheck.addEventListener("click", function(){
+			var httpreq = new XMLHttpRequest();
+			httpreq.open("GET", "http://localhost:8080/efind-0.0.1/changeStatus?id="+pid+"&status="+0, true);
+			httpreq.send();
+			document.body.removeChild(cover);
+			document.body.removeChild(dialog);
+			location.reload();
+			pendingOutletsButton.click();
+		});
+	
+		var dialogcross = document.createElement('div');
+			dialogcross.id = "dialogcrossmark";
+			dialogcross.addEventListener("click", function(){
+				document.body.removeChild(cover);
+				document.body.removeChild(dialog);
+		});
+	
+		var cover = document.createElement('div');
+		cover.id = "cover";
+		
+		dialog.appendChild(dialogcheck);
+		dialog.appendChild(dialogcross);
+		
+		document.body.prepend(dialog);
+		document.body.prepend(cover);
+	});
+}
+
+function badCheckmarkClickable(checkmark, oid) {
+	checkmark.addEventListener("click", function(){
+		var dialog = document.createElement('div');
+		dialog.id = "dialogbox";
+		dialog.innerHTML = "Deactivate Outlet?";
+		
+		var dialogcheck = document.createElement('div');
+		dialogcheck.id = "dialogcheckmark";
+		dialogcheck.addEventListener("click", function(){
+			var httpreq = new XMLHttpRequest();
+			httpreq.open("GET", "http://localhost:8080/efind-0.0.1/changeStatus?id="+oid+"&status="+0, true);
+			httpreq.send();
+			document.body.removeChild(cover);
+			document.body.removeChild(dialog);
+			location.reload();
+			pendingOutletsButton.click();
+		});
+	
+		var dialogcross = document.createElement('div');
+			dialogcross.id = "dialogcrossmark";
+			dialogcross.addEventListener("click", function(){
+				document.body.removeChild(cover);
+				document.body.removeChild(dialog);
+		});
+	
+		var cover = document.createElement('div');
+		cover.id = "cover";
+		
+		dialog.appendChild(dialogcheck);
+		dialog.appendChild(dialogcross);
+		
+		document.body.prepend(dialog);
+		document.body.prepend(cover);
+	});
+}
 
 function createAllListComponent() {
 	var component = list.lastElementChild;
@@ -67,7 +155,7 @@ function createAllListComponent() {
 	pendingOutletsButton.style.backgroundColor = 'transparent';
 	badOutletsButton.style.backgroundColor = 'transparent';
 	for(i=0; i<=arrayOfOutlets.length; i++){
-		if(arrayOfOutlets[i].status == 2 || arrayOfOutlets[i].status == 0) {
+		if(arrayOfOutlets[i].status == 2) {
 			var outletComponent = document.createElement('div');
 			outletComponent.className = "outletcomponent";
 			var outletIcon = document.createElement('div');
@@ -156,10 +244,12 @@ function createPendingListComponent() {
 			outletComponent.appendChild(adress);
 			var checkmark = document.createElement('div');
 			checkmark.id = "checkmark";
-			pendingCheckmarkClickable(checkmark);
+			var oid = arrayOfOutlets[i].id;
+			pendingCheckmarkClickable(checkmark,oid);
 			outletComponent.appendChild(checkmark);
 			var crossmark = document.createElement('div');
 			crossmark.id = "crossmark";
+			pendingCrossmarkClickable(crossmark,oid);
 			outletComponent.appendChild(crossmark);
 			list.appendChild(outletComponent);
 		}
@@ -176,7 +266,7 @@ function createBadListComponent() {
 	pendingOutletsButton.style.backgroundColor = 'transparent';
 	badOutletsButton.style.backgroundColor = '#999999';
 	for(i=0;i<=arrayOfOutlets.length;i++){
-		if(arrayOfOutlets[i].reports != 0){
+		if(arrayOfOutlets[i].reports != 0 && arrayOfOutlets[i].status != 0){
 			var outletComponent = document.createElement('div');
 			outletComponent.className = "outletcomponent";
 			var outletIcon = document.createElement('div');
@@ -215,11 +305,11 @@ function createBadListComponent() {
 			adress.innerHTML += arrayOfOutlets[i].description;
 			outletComponent.appendChild(adress);
 			var checkmark = document.createElement('div');
-			checkmark.id = "checkmark";
+			checkmark.id = "badcheckmark";
+			var oid = arrayOfOutlets[i].id;
+			badCheckmarkClickable(checkmark, oid);
 			outletComponent.appendChild(checkmark);
-			var crossmark = document.createElement('div');
-			crossmark.id = "crossmark";
-			outletComponent.appendChild(crossmark);
+			
 			list.appendChild(outletComponent);
 		}
 	}
