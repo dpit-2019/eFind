@@ -41,6 +41,16 @@ function pendingCheckmarkClickable(checkmark) {
 }
 
 function makePendingCheckConfirmation() {
+	var dialog = document.createElement('div');
+	dialog.id = "dialogbox";
+	dialog.innerHTML = "Add Outlet?";
+	
+	var dialogcheck = document.createElement('div');
+	dialogcheck.id = "dialogcheckmark";
+	dialogcheckid.addEventListener("click", function(){
+		
+	});
+	
 	var cover = document.createElement('div');
 	cover.id = "cover";
 	document.body.prepend(cover);

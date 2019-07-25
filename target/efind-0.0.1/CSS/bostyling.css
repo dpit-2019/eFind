@@ -339,6 +339,16 @@ body {
 	line-height: 100px;
 }
 
+#dialogcheckmark {
+	height: 15%;
+	width: 15%;
+	background: url("/efind-0.0.1/img/checkmark.png") no-repeat;
+	background-size: 100%;
+	top: 70%;
+	left: 20%;
+	cursor: pointer;
+}
+
 ::-webkit-scrollbar {
 	width: 12px;
 }

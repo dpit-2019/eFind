@@ -165,7 +165,7 @@ public class PrizaController  {
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set stare = 0 WHERE id="+id+";");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = 2 WHERE id="+id+";");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
