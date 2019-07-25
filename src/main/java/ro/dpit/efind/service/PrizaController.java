@@ -18,7 +18,7 @@ public class PrizaController  {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                        .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
+                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "password");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {
@@ -50,7 +50,7 @@ public class PrizaController  {
                 res.setDescriere(rs.getString("descriere"));
                 res.setLat(rs.getDouble("lat"));
                 res.setLng(rs.getDouble("lng"));
-                res.setPending(rs.getInt("stare"));
+                res.setPending(rs.getInt("status"));
                 res.setReports(rs.getInt("reports"));
             }
             System.out.println("servicul e accesat");
@@ -69,16 +69,17 @@ public class PrizaController  {
 
     @RequestMapping("/getPointeri")
     public List<MapPoint> getPrize(@RequestParam(value="lats") double lats,
-                         @RequestParam(value="lngs") double lngs,
-                         @RequestParam(value="latj") double latj,
-                         @RequestParam(value="lngj") double lngj ){
+                                   @RequestParam(value="lngs") double lngs,
+                                   @RequestParam(value="latj") double latj,
+                                   @RequestParam(value="lngj") double lngj ){
         List<MapPoint> rez = new ArrayList<MapPoint>();
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
+            conn.setAutoCommit(false);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT lat, lng, id FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
-                    "AND lng<"+lngs+"AND lng>"+lngj+";");
+                    "AND lng<"+lngs+"AND lng>"+lngj+"AND status=2;");
             int t=0;
             while(rs.next())
             {
@@ -102,21 +103,42 @@ public class PrizaController  {
 
     @RequestMapping("/addPriza")
     public void addPriza(@RequestParam(value = "nume") String Nume,
-                        @RequestParam(value = "tip") int tip,
-                        @RequestParam(value = "descriere") String Descriere,
-                        @RequestParam(value = "lat") double Latitude,
-                        @RequestParam(value = "lng") double Longitude){
+                         @RequestParam(value = "tip") int tip,
+                         @RequestParam(value = "descriere") String Descriere,
+                         @RequestParam(value = "lat") double Latitude,
+                         @RequestParam(value = "lng") double Longitude){
 
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
+            conn.setAutoCommit(false);
             stmt = conn.createStatement();
-             stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
+            stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ Descriere+","+Latitude+","+Longitude+");");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
         }catch(Exception e) {
             System.out.println("nu merge====================Adaugarea");
+            e.printStackTrace();
+        }
+    }
+    @RequestMapping("/update")
+    public void updatePriza (@RequestParam(value = "nume") String Nume,
+                             @RequestParam(value = "tip") int tip,
+                             @RequestParam(value = "descriere") String Descriere,
+                             @RequestParam(value  = "id") int id){
+
+        try{
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" SET nume = "+Nume+", tip = "+tip+", descriere= "+Descriere+"WHERE id="+id+";");
+            stmt.close();
+            conn.commit();
+            connectionPool.releaseConnection(conn);
+        }catch(Exception e) {
+            System.out.println("nu merge===================UPdate");
             e.printStackTrace();
         }
     }
@@ -144,7 +166,7 @@ public class PrizaController  {
                 to.setDescriere(rs.getString("descriere"));
                 to.setLat(rs.getDouble("lat"));
                 to.setLng(rs.getDouble("lng"));
-                to.setPending(rs.getInt("stare"));
+                to.setPending(rs.getInt("status"));
                 to.setReports(rs.getInt("reports"));
                 rez.add(to);
             }
@@ -158,14 +180,15 @@ public class PrizaController  {
 
     }
     @RequestMapping("/changeStatus")
-    public void changeStatus (@RequestParam(value = "id") int id)
+    public void changeStatus (@RequestParam(value = "id") int id,
+                              @RequestParam(value = "status") int status)
     {
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set stare = 0 WHERE id="+id+";");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = "+status+"WHERE id="+id+";");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
