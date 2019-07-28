@@ -220,16 +220,9 @@ function editButtonClickable(editButton, id) {
 	});
 }
 
-function changeData(nameInput, adressInput, typeSelect, id, dialogBox, cover){
-	var httpreq = new XMLHttpRequest();
-	httpreq.open("GET", "http://localhost:8080/efind-0.0.1/update?nume="+nameInput+"&tip="+typeSelect+"&descriere="+adressInput+"&id="+id, true);
-	httpreq.send();
-	location.reload();
-}
-
 function outletIconClickable(outletIcon, lati, lngi) {
 	outletIcon.addEventListener("click", function(){
-		window.open("http://www.google.com/maps/place/"+lati+","+lngi+"/@"+lati+","+lngi+",14z", '_blank');
+		window.open("http://www.google.com/maps/?q="+lati+","+lngi, '_blank');
 	});
 }
 
@@ -308,8 +301,8 @@ function createPendingListComponent() {
 			outletComponent.className = "outletcomponent";
 			var outletIcon = document.createElement('div');
 			outletIcon.className = "basicoutlet";
-			var lati = arrayOfOutlets[i].lat;
-			var lngi = arrayOfOutlets[i].lng;
+			var lati = Math.floor(arrayOfOutlets[i].lat * 100000) / 100000;
+			var lngi = Math.floor(arrayOfOutlets[i].lng * 100000) / 100000;
 			outletIconClickable(outletIcon, lati, lngi);
 			outletComponent.appendChild(outletIcon);
 			var latText = document.createElement('div');
@@ -370,8 +363,8 @@ function createBadListComponent() {
 			outletComponent.className = "outletcomponent";
 			var outletIcon = document.createElement('div');
 			outletIcon.className = "basicoutlet";
-			var lati = arrayOfOutlets[i].lat;
-			var lngi = arrayOfOutlets[i].lng;
+			var lati = Math.floor(arrayOfOutlets[i].lat * 100000) / 100000;
+			var lngi = Math.floor(arrayOfOutlets[i].lng * 100000) / 100000;
 			outletIconClickable(outletIcon, lati, lngi);
 			outletComponent.appendChild(outletIcon);
 			var latText = document.createElement('div');
@@ -433,8 +426,8 @@ function createInactiveListComponent() {
 			outletComponent.className = "outletcomponent";
 			var outletIcon = document.createElement('div');
 			outletIcon.className = "basicoutlet";
-			var lati = arrayOfOutlets[i].lat;
-			var lngi = arrayOfOutlets[i].lng;
+			var lati = Math.floor(arrayOfOutlets[i].lat * 100000) / 100000;
+			var lngi = Math.floor(arrayOfOutlets[i].lng * 100000) / 100000;
 			outletIconClickable(outletIcon, lati, lngi);
 			outletComponent.appendChild(outletIcon);
 			var latText = document.createElement('div');
