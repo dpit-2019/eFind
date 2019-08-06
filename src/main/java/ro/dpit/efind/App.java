@@ -6,9 +6,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ro.dpit.efind.service.BasicConnectionPool;
+import ro.dpit.efind.service.PrizaController;
+
+import java.sql.SQLException;
 
 /**
  * Hello world!
@@ -22,10 +23,13 @@ public class App extends SpringBootServletInitializer {
         SpringApplication.run(applicationClass, args);
     }
 
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(applicationClass);
     }
 
     private static Class<App> applicationClass = App.class;
+
+
 }

@@ -50,6 +50,48 @@ function initMap() {
  },
  fullscreenControl: true
  });
+document.getElementById("submit").addEventListener("click", function () {
+var nume = document.getElementById("nume").value;
+var descriere = document.getElementById("descriere").value;
+var tipul = document.getElementById("tipul").value;
+var lat = document.getElementById("lat").textContent;
+var lng = document.getElementById("lng").textContent;
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log
+ }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/addPriza?nume=%27"+nume+"%27&tip="+tipul+"&descriere=%27"+descriere+"%27&lat="+lat+"&lng="+lng, true);
+ xhttp.send();
+ });
+
+document.getElementById("buttonAnulare").addEventListener("click", function () {
+  document.getElementById('formAdaugare').style.zIndex = -1;
+});
+document.getElementById("butt").addEventListener("click", function () {
+  document.getElementById('sectiune').style.zIndex = -1;
+});
+
+google.maps.event.addListener(map, 'click', function(event) {
+   document.getElementById('formAdaugare').style.zIndex = 1;
+   document.getElementById('lat').innerHTML= event.latLng.lat();
+   document.getElementById('lng').innerHTML= event.latLng.lng();
+
+
+
+});
+
+ map.addListener('center_changed', function() {
+   /// alert(map.getBounds());
+   var bounds =  map.getBounds();
+   var ne = bounds.getNorthEast();
+   var sw = bounds.getSouthWest();
+   console.log(ne.lat() + " " + ne.lng());
+
+
+   });
  setMarkers(map);
  var markerControlDiv = document.createElement('div');
  var markerControl = new MarkerControl(markerControlDiv, map);
@@ -73,20 +115,28 @@ var neighborhoods = [
 var Info = ["Priza123", "Strada Mea", "Cluj Napoca", "Aici ii descriere"];
 
 
-function gettitle(marker)
+function gettitle(id)
 {
-  document.getElementById('imagine').style.background = "url('img/cluj-image.webp') no-repeat";
-  document.getElementById('imagine').style.backgroundSize = "100% 110%";
-  document.getElementById('TipuPrizei').style.background = "url('img/outletType.png') no-repeat";
-  document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
-  document.getElementById('TipuPrizei').innerHTML = " ";
-  document.getElementById('sectiune').style.zIndex = 1;
-  document.getElementById('NumeLocal').innerHTML = Info[0];
-  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
-  document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
-  document.getElementById('DescrierePriza').innerHTML = Info[3];
-}
-
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log(JSON.parse(xhttp.responseText).name);
+   var data = JSON.parse(xhttp.responseText);
+   document.getElementById('imagine').style.background = "url('img/cluj-image.webp') no-repeat";
+     document.getElementById('imagine').style.backgroundSize = "100% 110%";
+     document.getElementById('TipuPrizei').style.background = "url('img/outletType.png') no-repeat";
+     document.getElementById('TipuPrizei').style.backgroundSize = "100% 100%";
+     document.getElementById('TipuPrizei').innerHTML = data.tip;
+     document.getElementById('sectiune').style.zIndex = 1;
+     document.getElementById('NumeLocal').innerHTML = data.name;
+     document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
+     document.getElementById('NumeStrada').innerHTML = Info[1] + ", " + Info[2];
+     document.getElementById('DescrierePriza').innerHTML = data.descriere;
+ }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/getPriza?id="+id, true);
+ xhttp.send();
+ };
 function setMarkers(map) {
  var image = {
  url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
@@ -98,19 +148,35 @@ function setMarkers(map) {
 	coords: [1, 1, 1, 20, 18, 20, 18, 1],
 	type: 'poly'
  };
- for (var i = 0; i < neighborhoods.length; i++) {
-	var neighborhood = neighborhoods[i];
-	var marker = new google.maps.Marker({
-		position: {lat: neighborhood[1], lng: neighborhood[2]},
-		map: map,
-		icon: image,
-		shape: shape,
-		title: neighborhood[0],
-		zIndex: neighborhood[3]
-	}).addListener('click', function(event){
-    gettitle(event);
-  });
+map.addListener('center_changed', function() {
+   /// alert(map.getBounds());
+   var bounds =  map.getBounds();
+   var ne = bounds.getNorthEast();
+   var sw = bounds.getSouthWest();
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+   ///console.log(JSON.parse(xhttp.responseText).name);
+   var data = JSON.parse(xhttp.responseText);
+   var i;
+   console.log(Object.keys(data).length);
+   for (i=0;i<=Object.keys(data).length;i++)
+   {
+   	var marker = new google.maps.Marker({
+   		position: {lat:data[i].lat, lng: data[i].lng},
+   		map: map,
+   		icon: image,
+   		shape: shape,
+   		title:""+data[i].id+""}).addListener('click', function(marker){
+
+        gettitle(parseInt(this.getTitle()));
+       });
+   }
  }
+ };
+ xhttp.open("GET", "http://localhost:8080/efind-0.0.1/getPointeri?lats="+ne.lat()+"&lngs="+ne.lng()+"&latj="+sw.lat()+"&lngj="+sw.lng(), true);
+ xhttp.send();
+ });
  var basicMarker = new google.maps.Marker({
 	position: {lat: 46.760639, lng: 23.587515},
 	map: map,
