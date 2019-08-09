@@ -1,4 +1,0 @@
-Serviciul ruleaza in tomcat-ul embedded in IDEA 
-Pentru a functiona trebuie instalat (https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related)
-dupa ce se deschide pagina web sus in drepata trebiue activat CORS 
-dupa asta ar trebui sa functioneze
