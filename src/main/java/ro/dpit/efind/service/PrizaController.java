@@ -12,7 +12,6 @@ import java.util.*;
 @RestController
 public class PrizaController  {
 
-<<<<<<< HEAD
 
     ConnectionPool connectionPool;
     {
@@ -35,9 +34,9 @@ public class PrizaController  {
             e.printStackTrace();
         }
     }
-=======
+
     DBinterface DB = BasicDB.create();
->>>>>>> Cosmin2
+
     @RequestMapping("/getPriza")
     public Priza getDetails(@RequestParam(value="id") int id) {
 
@@ -80,7 +79,7 @@ public class PrizaController  {
     public void changeStatus (@RequestParam(value = "id") int id,
                               @RequestParam(value = "status") int status)
     {
-<<<<<<< HEAD
+
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
@@ -95,9 +94,9 @@ public class PrizaController  {
             System.out.println("*=======*");
             e.printStackTrace();
         }
-=======
+
         DB.schimbaStatus(id, status);
->>>>>>> Cosmin2
+
     }
     @RequestMapping("/report")
     public void report (@RequestParam(value = "id") int id)
