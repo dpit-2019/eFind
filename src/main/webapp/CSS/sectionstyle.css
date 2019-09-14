@@ -43,7 +43,7 @@ div.alege{
 	background-color: #FFFFFF;
 	height: 100%;
 	position: absolute;
-	box-shadow: 0.5px 0px 6px rgba(0,0,0,0.1);
+	box-shadow: 0.1vw 0vw 0.5vw rgba(0,0,0,0.1);
 	overflow: hidden;
 }
 
@@ -87,13 +87,13 @@ input.searchBar {
 	height: 23%;
 	background-color: #FFFFFF;
 	background-image: url('../img/search.png');
-	background-position: 5px 3px;
+	background-position: 0.5vw 0.2vw;
 	padding-left: 9%;
 	padding-right: 12%;
 	background-size: 6%;
 	background-repeat: no-repeat;
 	border: none;
-	border-radius: 8px;
+	border-radius: 0.5vw;
 	left: 10%;
 	top: 48%;
 	position: absolute;
@@ -106,8 +106,8 @@ input.searchBar {
 	width: 9%;
 	background: url('../img/directions.png') no-repeat;
 	background-size: 60%;
-	background-position: 10px 3px;
-	border-left: 1px solid rgba(0,0,0,0.1);
+	background-position: 0.8vw 0.2vw;
+	border-left: 0.1vw solid rgba(0,0,0,0.1);
 	right: 17%;
 	top: 51%;
 	position: absolute;
@@ -128,7 +128,7 @@ input.searchBar {
 	line-height: 350%;
 	color: white;
 	cursor: pointer;
-	border-right: 1px solid rgba(255, 255, 255, 0.1);
+	border-right: 0.1vw solid rgba(255, 255, 255, 0.1);
 }
 
 #favoriteTab {
@@ -145,10 +145,11 @@ input.searchBar {
 	line-height: 350%;
 	color: white;
 	cursor: pointer;
-	border-left: 2px solid rgba(255, 255, 255, 0.1);
+	border-left: 0.1vw solid rgba(255, 255, 255, 0.1);
 }
 
 .identifier {
+	position: absolute;
 	height: 10%;
 	bottom: 0%;
 	width: 100%;
@@ -169,7 +170,7 @@ input.searchBar {
 .component {
 	width: 85%;
 	height: 23%;
-	border-bottom: 2px solid rgba(0,0,0,0.1);
+	border-bottom: 0.1vw solid rgba(0,0,0,0.1);
 	background-color: #FFFFFF;
 	position: relative;
 	z-index: 10;
@@ -348,33 +349,33 @@ input.searchBar {
 .colouredHeart {
 	height: 23%;
 	width: 9%;
-	border-radius: 50%;
+	border-radius: 46%;
 	background: url('../img/colouredHeart.png') no-repeat;
 	background-size: 70%;
-	background-position: 4px 5px;
+	background-position: 0.3vw 0.4vw;
 	position: absolute;
 	right: 0;
 	top: 5%;
-	box-shadow:0 0 8px rgba(5, 211, 218,0.5);
+	box-shadow:0 0 0.4vw rgba(5, 211, 218,0.5);
 	cursor: pointer;	
 }
 
 .emptyHeart {
 	height: 23%;
 	width: 9%;
-	border-radius: 50%;
+	border-radius: 46%;
 	background: url('../img/emptyHeart.png') no-repeat;
 	background-size: 70%;
-	background-position: 4px 5px;
+	background-position: 0.315vw 0.39vw;
 	position: absolute;
 	right: 0;
 	top: 5%;
-	box-shadow:0 0 8px rgba(0, 0, 0,0.2);
+	box-shadow:0 0 0.4vw rgba(0, 0, 0,0.2);
 	cursor: pointer;
 }	
 
 ::-webkit-scrollbar {
-	width: 0px;
+	width: 0%;
 	background: transparent;
 }
 
