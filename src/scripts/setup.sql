@@ -10,10 +10,14 @@ id SERIAL PRIMARY KEY ,
 nume TEXT ,
 tip VARCHAR (100) ,
 descriere TEXT ,
-restrictii TEXT ,
-lat FLOAT NOT NULL ,
-long FLOAT NOT NULL ,
-status_priza INT 
+lat NUMERIC NOT NULL ,
+lng NUMERIC NOT NULL ,
+status INT, 
+reports INT,
+prize_totale INT,
+prize_ocupate INT,
+ora_inchidere INT,
+favorite INT
 );
 
 
