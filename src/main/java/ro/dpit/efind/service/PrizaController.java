@@ -21,7 +21,7 @@ public class PrizaController  {
     }
 
     @RequestMapping("/getPointeri")
-    public List<MapPoint> getPrize(@RequestParam(value="lats") double lats,
+    public List<Priza> getPrize(@RequestParam(value="lats") double lats,
                                    @RequestParam(value="lngs") double lngs,
                                    @RequestParam(value="latj") double latj,
                                    @RequestParam(value="lngj") double lngj ){
@@ -35,8 +35,9 @@ public class PrizaController  {
                          @RequestParam(value = "tip") int tip,
                          @RequestParam(value = "descriere") String Descriere,
                          @RequestParam(value = "lat") double Latitude,
-                         @RequestParam(value = "lng") double Longitude){
-        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude);
+                         @RequestParam(value = "lng") double Longitude,
+                         @RequestParam(value="total")int total){
+        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude, total);
     }
     @RequestMapping("/update")
     public void updatePriza (@RequestParam(value = "nume") String Nume,
@@ -61,6 +62,17 @@ public class PrizaController  {
     public void report (@RequestParam(value = "id") int id)
     {
         DB.raporteaza(id);
+    }
+
+    @RequestMapping("/fav")
+    public void fav (@RequestParam(value = "id") int id)
+    {
+        DB.fav(id);
+    }
+    @RequestMapping("/ocupa")
+    public void ocupa (@RequestParam(value = "id") int id)
+    {
+        DB.ocupa(id);
     }
 }
 
