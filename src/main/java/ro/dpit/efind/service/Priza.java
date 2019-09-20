@@ -12,7 +12,7 @@ public class Priza {
     private int total_prize;
     private int prize_ocupate;
     private int favorite;
-    private int ora_inchidere;
+    private String ora_inchidere;
 
     public int getTotal_prize() {
         return total_prize;
@@ -38,11 +38,11 @@ public class Priza {
         this.favorite = favorite;
     }
 
-    public int getOra_inchidere() {
+    public String getOra_inchidere() {
         return ora_inchidere;
     }
 
-    public void setOra_inchidere(int ora_inchidere) {
+    public void setOra_inchidere(String ora_inchidere) {
         this.ora_inchidere = ora_inchidere;
     }
 

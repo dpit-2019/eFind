@@ -110,7 +110,7 @@ public class BasicDB implements DBinterface {
             conn.setAutoCommit(false);
             System.out.println("Opened database successfully");
             stmt = conn.createStatement();
-            ResultSet rs= stmt.executeQuery("select * FROM \"priza\".\"detalii\";");
+            ResultSet rs= stmt.executeQuery("SELECT * FROM \"priza\".\"detalii\";");
             while(rs.next()) {
                 Priza to = new Priza();
                 to.setId(rs.getInt("id"));
@@ -123,7 +123,7 @@ public class BasicDB implements DBinterface {
                 to.setReports(rs.getInt("reports"));
                 to.setFavorite(rs.getInt("favorite"));
                 to.setTotal_prize(rs.getInt("prize_totale"));
-                to.setOra_inchidere(rs.getInt("ora_inchidere"));
+                to.setOra_inchidere(rs.getString("ora_inchidere"));
                 to.setPrize_ocupate(rs.getInt("prize_ocupate"));
                 rez.add(to);
             }
