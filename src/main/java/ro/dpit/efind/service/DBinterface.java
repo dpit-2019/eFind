@@ -6,11 +6,11 @@ public interface DBinterface {
 
     Priza aduPriza(int id);
 
-    List<MapPoint> aduPointeri(double latj,double lngj,double lats,double lngs);
+    List<Priza> aduPointeri(double latj,double lngj,double lats,double lngs);
 
     List<Priza> aduBackOfficeData();
 
-    void bagaPriza(String Nume, int tip, String descriere,double lat, double lng);
+    void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total);
 
     void updatePriza(String Nume, int tip, String descriere,int id);
 
@@ -18,5 +18,8 @@ public interface DBinterface {
 
     void raporteaza(int id);
 
+    void fav(int id);
+
+    void ocupa(int id);
 
 }

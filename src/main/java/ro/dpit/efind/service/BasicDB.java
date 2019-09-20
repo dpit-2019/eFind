@@ -68,22 +68,27 @@ public class BasicDB implements DBinterface {
         return res;
     }
 
-    public List<MapPoint> aduPointeri(double latj, double lngj, double lats, double lngs){
-        List<MapPoint> rez = new ArrayList<MapPoint>();
+    public List<Priza> aduPointeri(double latj, double lngj, double lats, double lngs){
+        List<Priza> rez = new ArrayList<Priza>();
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT name, tip, lat, lng, id FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
+
                     "AND lng<"+lngs+"AND lng>"+lngj+"AND status=2;");
             int t=0;
             while(rs.next())
             {
-                MapPoint to = new MapPoint();
+                Priza to = new Priza();
                 to.setId(rs.getInt("id"));
                 to.setLng(rs.getDouble("lng"));
                 to.setLat(rs.getDouble("lat"));
+                to.setTip(rs.getInt("tip"));
+                to.setName(rs.getString("nume"));
+                to.setDescriere(rs.getString("descriere"));
+                to.setReports(rs.getInt("reports"));
                 rez.add(to);
                 t++;
             }
@@ -116,6 +121,10 @@ public class BasicDB implements DBinterface {
                 to.setLng(rs.getDouble("lng"));
                 to.setPending(rs.getInt("status"));
                 to.setReports(rs.getInt("reports"));
+                to.setFavorite(rs.getInt("favorite"));
+                to.setTotal_prize(rs.getInt("prize_totale"));
+                to.setOra_inchidere(rs.getInt("ora_inchidere"));
+                to.setPrize_ocupate(rs.getInt("prize_ocupate"));
                 rez.add(to);
             }
             stmt.close();
@@ -144,16 +153,18 @@ public class BasicDB implements DBinterface {
 
 
 
-    public void bagaPriza(String Nume, int tip, String descriere,double lat, double lng){
+    public void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total){
         try{
+            System.out.println("Am ajuns in back");
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng ) VALUES ("+Nume+","+ tip+","+ descriere+","+lat+","+lng+");");
+            stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng, prize_totale ) VALUES ("+Nume+","+ tip+","+ descriere+","+lat+","+lng+","+total+");");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
+            System.out.println("am terminat in back");
         }catch(Exception e) {
             System.out.println("nu merge====================Adaugarea");
             e.printStackTrace();
@@ -191,6 +202,46 @@ public class BasicDB implements DBinterface {
             while(rs.next())
                 tot=rs.getInt("reports");
             stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set reports = "+(tot+1)+" WHERE id="+id+";");
+            conn.commit();
+            connectionPool.releaseConnection(conn);
+            connectionPool.releaseConnection(conn2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void fav(int id)
+    {
+        int g=1;
+        try{
+            Connection conn = connectionPool.getConnection();
+            Statement stmt = null;
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set favorite = "+g+"WHERE id="+id+";");
+            stmt.close();
+            conn.commit();
+            connectionPool.releaseConnection(conn);
+        }catch(Exception e) {
+            System.out.println("*FAVORITEEEE*");
+            e.printStackTrace();
+        }
+    }
+    public void ocupa(int id)
+    {
+        try {
+            Connection conn = connectionPool.getConnection();
+            Connection conn2= connectionPool.getConnection();
+            Statement stmt = null;
+            Statement stmt2 = null;
+            conn.setAutoCommit(false);
+            conn2.setAutoCommit(false);
+            stmt2 = conn2.createStatement();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT prize_ocupate FROM \"priza\".\"detalii\" WHERE id = "+id+";");
+            int tot=1;
+            while(rs.next())
+                tot=rs.getInt("prize_ocupate");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set prize_ocupate="+(tot+1)+" WHERE id="+id+";");
             conn.commit();
             connectionPool.releaseConnection(conn);
             connectionPool.releaseConnection(conn2);

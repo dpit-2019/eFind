@@ -9,6 +9,42 @@ public class Priza {
     private double lng;
     private int pending;
     private int reports;
+    private int total_prize;
+    private int prize_ocupate;
+    private int favorite;
+    private int ora_inchidere;
+
+    public int getTotal_prize() {
+        return total_prize;
+    }
+
+    public void setTotal_prize(int total_prize) {
+        this.total_prize = total_prize;
+    }
+
+    public int getPrize_ocupate() {
+        return prize_ocupate;
+    }
+
+    public void setPrize_ocupate(int prize_ocupate) {
+        this.prize_ocupate = prize_ocupate;
+    }
+
+    public int getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(int favorite) {
+        this.favorite = favorite;
+    }
+
+    public int getOra_inchidere() {
+        return ora_inchidere;
+    }
+
+    public void setOra_inchidere(int ora_inchidere) {
+        this.ora_inchidere = ora_inchidere;
+    }
 
     public int getPending() {
         return pending;
