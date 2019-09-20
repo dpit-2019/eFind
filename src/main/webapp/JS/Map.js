@@ -71,24 +71,7 @@ function initMap() {
           });
           map.fitBounds(bounds);
         });
-      }
-
-
-
-function setMarkers(map) {
- var image = {
- url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
- size: new google.maps.Size(32,32),
- origin: new google.maps.Point(0, 0),
- anchor: new google.maps.Point(0, 32)
- };
- var shape = {
-	coords: [1, 1, 1, 20, 18, 20, 18, 1],
-	type: 'poly'
- };
- 
- 
-map.addListener('center_changed', function() {
+	map.addListener('center_changed', function() {
    /// alert(map.getBounds());
    var bounds =  map.getBounds();
    var ne = bounds.getNorthEast();
@@ -117,4 +100,15 @@ map.addListener('center_changed', function() {
  xhttp.open("GET", "http://localhost:8080/efind-0.0.1/getPointeri?lats="+ne.lat()+"&lngs="+ne.lng()+"&latj="+sw.lat()+"&lngj="+sw.lng(), true);
  xhttp.send();
  });
+}
+}
+
+
+var searchButton=document.getElementById("directions");
+searchButton.onclick = function(){
+	var input = document.getElementById('pac-input');
+
+	google.maps.event.trigger(input, 'focus', {});
+    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+    google.maps.event.trigger(this, 'focus', {});
 }

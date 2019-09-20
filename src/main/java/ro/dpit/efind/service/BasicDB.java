@@ -14,7 +14,7 @@ public class BasicDB implements DBinterface {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "password");
+                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {
@@ -75,7 +75,7 @@ public class BasicDB implements DBinterface {
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT lat, lng, id FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
+            ResultSet rs = stmt.executeQuery("SELECT name, tip, lat, lng, id FROM \"priza\".\"detalii\" WHERE lat<"+lats+"AND lat>" +latj+
                     "AND lng<"+lngs+"AND lng>"+lngj+"AND status=2;");
             int t=0;
             while(rs.next())
