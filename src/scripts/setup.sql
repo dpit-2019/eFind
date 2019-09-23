@@ -16,7 +16,7 @@ status INT DEFAULT 1,
 reports INT,
 prize_totale INT,
 prize_ocupate INT,
-ora_inchidere INT,
+ora_inchidere TEXT,
 favorite INT,
 free INT
 );
