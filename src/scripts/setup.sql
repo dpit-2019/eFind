@@ -18,7 +18,7 @@ prize_totale INT,
 prize_ocupate INT,
 ora_inchidere TEXT,
 favorite INT,
-free INT
+isfree INT
 );
 
 

@@ -1,4 +1,4 @@
-INSERT INTO priza.detalii (nume,tip,descriere,lat,lng,prize_totale,prize_ocupate,ora_inchidere,free) 
+INSERT INTO priza.detalii (nume,tip,descriere,lat,lng,prize_totale,prize_ocupate,ora_inchidere,isfree) 
 VALUES('Yep n yo',3,'Bufet cu dulciuri si deserturi',46.769266,23.589044,4,0,'22:00',0),
 ('VIVO',2,'O statie de incarcare autovehicule electrice',46.750833,23.532777,2,0,'22:00',1),
 ('Foodcourt VIVO',1,'2 mese triunghiulare',23.532777,23.531111,24,0,'22:00',1),
