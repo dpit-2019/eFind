@@ -1,0 +1,205 @@
+#selection {
+	width: 27%;
+	background-color: #FFFFFF;
+	height: 100%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	box-shadow: 0.1vw 0vw 0.5vw rgba(0,0,0,0.1);
+	overflow: hidden;
+	z-index: -10;
+}
+
+#image {
+	width: 100%;
+	height: 35%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	background: url("../img/landscape.png") no-repeat;
+	background-size: 100%;
+}
+
+#sName {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.8vw;
+	position: absolute;
+	top: 40%;
+	left: 10%;
+	color: #71798B;
+}
+
+#sAddress {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1vw;
+	position: absolute;
+	top: 46%;
+	left: 10.5%;
+	color: #A9ADBA;
+}
+
+#sRating {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1vw;
+	position: absolute;
+	top: 50%;
+	left: 10.5%;
+	color: #A9ADBA;
+}
+
+#sStar {
+	height: 10%;
+	width: 20%;
+	position: absolute;
+	background: url("../img/star.png") no-repeat;
+	background-size: 20%;
+	top: 50.2%;
+	left: 18%;
+}
+
+#sReviews {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1vw;
+	position: absolute;
+	top: 50%;
+	left: 23%;
+	color: #A9ADBA;
+}
+
+#sDot {
+	height: 3%;
+	width: 6%;
+	background: url('../img/dot.png') no-repeat;
+	background-size: 25%;
+	position: absolute;
+	top: 51%;
+	left: 49%;
+}
+
+#sDollar {
+	height: 20%;
+	width: 8%;
+	background: url('../img/dollar.png') no-repeat;
+	background-size: 80%;
+	position: absolute;
+	top: 49.5%;
+	left: 53.2%;
+	cursor: default;
+}
+
+#sTick {
+	height: 20%;
+	width: 8%;
+	background: url('../img/tick.png') no-repeat;
+	background-size: 80%;
+	position: absolute;
+	top: 49.5%;
+	left: 53.2%;
+	cursor: default;
+}
+
+#sCloseTime {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1vw;
+	position: absolute;
+	top: 54.2%;
+	left: 10.5%;
+	color: #A9ADBA;
+}
+
+#sLine1 {
+	width: 100%;
+	height: 0.3%;
+	background-color: rgba(0,0,0,0.1);
+	position: absolute;
+	top: 61%;
+}
+
+#sDescription {
+	width: 79%;
+	height: 12%;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1vw;
+	position: absolute;
+	top: 64%;
+	left: 10.5%;
+	color: #71798B;
+}
+
+#sLine2 {
+	width: 100%;
+	height: 0.3%;
+	background-color: rgba(0,0,0,0.1);
+	position: absolute;
+	top: 79%;
+}
+
+#sPowerIcon {
+	height: 20%;
+	width: 9%;
+	background: url('../img/power.png') no-repeat;
+	background-size: 100%;
+	position: absolute;
+	left: 10.5%;
+	top: 82%;
+	cursor: default;
+}
+
+#sAvaliableNumber {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.5vw;
+	color: #323846;
+	position: absolute;
+	left: 21%;
+	top: 82.3%;
+}
+
+#sTotalNumber {
+	height: auto;
+	width: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.5vw;
+	color: #71798B;
+	position: absolute;
+	left: 25%;
+	top: 82.3%;
+}
+
+#sTakeButton {
+	height: 5%;
+	width: 80%;
+	border-radius: 0.3vw;
+	text-align: center;
+	line-height: 150%;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.5vw;
+	color: #FFFFFF;
+	background-color: #19B0D8;
+	position: absolute;
+	bottom: 5%;
+	left: 10.5%;
+	cursor: pointer;
+}
+
+#sBackButton {
+	height: 3%;
+	width: 7%;
+	position: absolute;
+	top: 3%;
+	left: 10.5%;
+	background: url("../img/back.png") no-repeat;
+	background-size: 100%;
+	cursor: pointer;
+}

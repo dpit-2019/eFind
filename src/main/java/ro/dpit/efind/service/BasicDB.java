@@ -125,6 +125,7 @@ public class BasicDB implements DBinterface {
                 to.setTotal_prize(rs.getInt("prize_totale"));
                 to.setOra_inchidere(rs.getString("ora_inchidere"));
                 to.setPrize_ocupate(rs.getInt("prize_ocupate"));
+                to.setIsFree(rs.getInt("isfree"));
                 rez.add(to);
             }
             stmt.close();

@@ -45,6 +45,7 @@ div.alege{
 	position: absolute;
 	box-shadow: 0.1vw 0vw 0.5vw rgba(0,0,0,0.1);
 	overflow: hidden;
+	display: hidden;
 }
 
 #topSection {

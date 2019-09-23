@@ -13,6 +13,15 @@ public class Priza {
     private int prize_ocupate;
     private int favorite;
     private String ora_inchidere;
+    private int isFree;
+
+    public int getIsFree(){
+        return isFree;
+    }
+
+    public void setIsFree(int isFree){
+        this.isFree = isFree;
+    }
 
     public int getTotal_prize() {
         return total_prize;
