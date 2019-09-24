@@ -8,16 +8,19 @@ CREATE SCHEMA priza ;
 CREATE TABLE priza.detalii (
 id SERIAL PRIMARY KEY ,
 nume TEXT ,
-tip VARCHAR (100) ,
+tip INT ,
 descriere TEXT ,
 lat NUMERIC NOT NULL ,
 lng NUMERIC NOT NULL ,
-status INT, 
+status INT DEFAULT 1, 
 reports INT,
 prize_totale INT,
 prize_ocupate INT,
-ora_inchidere INT,
-favorite INT
+ora_inchidere TEXT,
+favorite INT,
+isfree INT
 );
+
+
 
 
