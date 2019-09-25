@@ -55,6 +55,9 @@ public class BasicDB implements DBinterface {
                 res.setLng(rs.getDouble("lng"));
                 res.setPending(rs.getInt("status"));
                 res.setReports(rs.getInt("reports"));
+                res.setPrize_ocupate(rs.getInt("prize_ocupate"));
+                res.setTotal_prize(rs.getInt("prize_totale"));
+                res.setIsFree(rs.getInt("isfree"));
             }
             System.out.println("servicul e accesat");
             rs.close();
@@ -136,13 +139,13 @@ public class BasicDB implements DBinterface {
         }
         return rez;
     }
-    public void updatePriza(String Nume, int tip, String descriere, int id){
+    public void updatePriza(String Nume, int tip, String descriere, int id, int tot, String ora, int isfree){
         try{
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" SET nume = "+Nume+", tip = "+tip+", descriere= "+descriere+"WHERE id="+id+";");
+            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" SET nume = "+Nume+", tip = "+tip+", descriere= "+descriere+",prize_totale = "+tot+", ora_inchidere = "+ora+",isfree="+isfree+"WHERE id="+id+";");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
