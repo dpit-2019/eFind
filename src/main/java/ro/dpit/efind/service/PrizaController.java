@@ -18,7 +18,7 @@ public class PrizaController  {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
+                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "password");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {
@@ -60,8 +60,9 @@ public class PrizaController  {
                          @RequestParam(value = "descriere") String Descriere,
                          @RequestParam(value = "lat") double Latitude,
                          @RequestParam(value = "lng") double Longitude,
-                         @RequestParam(value="total")int total){
-        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude, total);
+                         @RequestParam(value="total")int total,
+                         @RequestParam(value ="isfree") int isfree){
+        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude, total, isfree);
     }
     @RequestMapping("/update")
     public void updatePriza (@RequestParam(value = "nume") String Nume,
@@ -80,21 +81,6 @@ public class PrizaController  {
     public void changeStatus (@RequestParam(value = "id") int id,
                               @RequestParam(value = "status") int status)
     {
-
-        try{
-            Connection conn = connectionPool.getConnection();
-            Statement stmt = null;
-            conn.setAutoCommit(false);
-            stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = 2 WHERE id="+id+";");
-            stmt.executeUpdate("UPDATE \"priza\".\"detalii\" set status = "+status+"WHERE id="+id+";");
-            stmt.close();
-            conn.commit();
-            connectionPool.releaseConnection(conn);
-        }catch(Exception e) {
-            System.out.println("*=======*");
-            e.printStackTrace();
-        }
 
         DB.schimbaStatus(id, status);
 

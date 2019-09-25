@@ -10,7 +10,7 @@ public interface DBinterface {
 
     List<Priza> aduBackOfficeData();
 
-    void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total);
+    void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total, int isfree);
 
     void updatePriza(String Nume, int tip, String descriere,int id);
 

@@ -14,7 +14,7 @@ public class BasicDB implements DBinterface {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
+                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "password");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {
@@ -154,14 +154,14 @@ public class BasicDB implements DBinterface {
 
 
 
-    public void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total){
+    public void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total, int isfree){
         try{
             System.out.println("Am ajuns in back");
             Connection conn = connectionPool.getConnection();
             Statement stmt = null;
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng, prize_totale ) VALUES ("+Nume+","+ tip+","+ descriere+","+lat+","+lng+","+total+");");
+            stmt.executeUpdate("INSERT INTO \"priza\".\"detalii\"(nume,tip, descriere, lat, lng, prize_totale, isfree ) VALUES ("+Nume+","+ tip+","+ descriere+","+lat+","+lng+","+total+","+isfree+");");
             stmt.close();
             conn.commit();
             connectionPool.releaseConnection(conn);
