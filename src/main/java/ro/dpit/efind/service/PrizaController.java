@@ -60,9 +60,10 @@ public class PrizaController  {
                          @RequestParam(value = "descriere") String Descriere,
                          @RequestParam(value = "lat") double Latitude,
                          @RequestParam(value = "lng") double Longitude,
-                         @RequestParam(value="total")int total,
-                         @RequestParam(value ="isfree") int isfree){
-        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude, total, isfree);
+                         @RequestParam(value="total") int total,
+                         @RequestParam(value ="isfree") int isfree,
+                         @RequestParam(value = "ora") String ora){
+        DB.bagaPriza(Nume, tip, Descriere, Latitude, Longitude, total, isfree, ora);
     }
     @RequestMapping("/update")
     public void updatePriza (@RequestParam(value = "nume") String Nume,
