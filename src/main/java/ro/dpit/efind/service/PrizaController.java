@@ -69,8 +69,11 @@ public class PrizaController  {
     public void updatePriza (@RequestParam(value = "nume") String Nume,
                              @RequestParam(value = "tip") int tip,
                              @RequestParam(value = "descriere") String Descriere,
-                             @RequestParam(value  = "id") int id){
-        DB.updatePriza(Nume, tip, Descriere, id);
+                             @RequestParam(value  = "id") int id,
+                             @RequestParam(value = "totale")int totale,
+                             @RequestParam(value = "ora")String ora,
+                             @RequestParam(value  = "free") int isfree){
+        DB.updatePriza(Nume, tip, Descriere, id, totale, ora, isfree);
 
     }
     @RequestMapping("/getBackOfficeData")

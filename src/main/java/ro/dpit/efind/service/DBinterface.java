@@ -12,7 +12,7 @@ public interface DBinterface {
 
     void bagaPriza(String Nume, int tip, String descriere,double lat, double lng, int total, int isfree, String ora);
 
-    void updatePriza(String Nume, int tip, String descriere,int id);
+    void updatePriza(String Nume, int tip, String descriere,int id, int totale, String ora, int isfree);
 
     void schimbaStatus(int is, int status);
 
