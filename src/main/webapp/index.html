@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="CSS/mapstyle.css">
+	<link rel="stylesheet" type="text/css" href="CSS/addDesign.css">
 	<link rel="stylesheet" type="text/css" href="CSS/selection.css">
 	<link rel="stylesheet" type="text/css" href="CSS/sectionstyle.css">	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6bZh0b2C5uo_LiaUr71JAnzzjWheI6SI&libraries=places"></script>
   </head>
@@ -76,6 +77,46 @@
 			</div>
 		</div>
     <div id="map"></div>
+	
+	<div id="coverSheet">
+		</div>
+		<div id="addDialog">
+			<div id="addTopSection">
+				<div id="addName">
+					Request Outlet
+				</div>
+				<div id="addExitButton">
+				</div>
+			</div>
+			<div id="addSaveButton">
+				<div id="addSaveText">
+					REQUEST
+				</div>
+			</div>
+			<label for="addName" id="nameLabel">Location name:</label>
+			<input type="text" id="addName" placeholder="Location name here..">
+			<label for="addTypeSelect" id="typeLabel">Outlet type:</label>
+			<select id="addTypeSelect">
+				<option value="" disabled selected>Choose type</option>
+				<option value="1">USB Outlet</option>
+				<option value="2">Car Station</option>
+				<option value="3">Grounded Outlet</option>
+				<option value="4">Ungrounded Outlet</option>
+				<option value="5">Wireless Outlet</option>
+			</select>
+			<label for="addDescription" id="descriptionLabel">Description:</label>
+			<input type="text" id="addDescription" placeholder="Description here..">
+			<label for="addTotal" id="totalLabel">How many outlets:</label>
+			<input type="text" id="addTotal" placeholder="Enter a number..">
+			<label for="addIsFree" id="isFreeLabel">Do you have to pay to use the outlet?</label>
+			<select id="addIsFree">
+				<option value="" disabled selected>Choose here</option>
+				<option value="0">Yes</option>
+				<option value="1">No</option>
+			</select>
+			<label for="addCloseTime" id="closeLabel">Closing time:</label>
+			<input type="text" id="addCloseTime" placeholder="hh:mm format..">
+		</div>
     <script type="text/javascript" src="JS/Map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&geometry&false&key=AIzaSyCpqRikwY196MqtQtwc9Q_dgFNw28JRqeI&callback=initMap"
     async defer></script>

@@ -73,6 +73,7 @@ function initMap() {
           map.fitBounds(bounds);
         });
 		
+		
 	map.addListener('center_changed', function() {
    /// alert(map.getBounds());
    var bounds =  map.getBounds();
@@ -181,7 +182,6 @@ function getReverseGeocodingData(lat, lng,i) {
         if (status == google.maps.GeocoderStatus.OK) {
             var street = (results[0].address_components[1].short_name);
 			var locality = (results[0].address_components[2].short_name);
-			console.log(street + ', ' + locality);
 			var eFindAddress = document.getElementById(i);
 			eFindAddress.innerHTML += street + ', ' + locality;
         }
@@ -230,6 +230,7 @@ function addElementsToList(){
 		var address = document.createElement('div');
 		address.className = 'address';
 		address.id = i;
+		address.innerHTML += "-";
 		component.appendChild(address);
 		var closingTime = document.createElement('div');
 		closingTime.className = 'closingTime';
@@ -244,7 +245,7 @@ function addElementsToList(){
 		component.appendChild(avaliableNumber);
 		var totalNumber = document.createElement('div');
 		totalNumber.className = 'totalNumber';
-		totalNumber.innerHTML += '/' + arrayOfOutlets[i].totalOutlets + ' avaliable';
+		totalNumber.innerHTML += '/' + arrayOfOutlets[i].totalOutlets + ' occupied';
 		component.appendChild(totalNumber);
 		if(arrayOfOutlets[i].isFree == 1){
 			var tickIcon = document.createElement('div');
@@ -269,8 +270,6 @@ function addElementsToList(){
 		component.appendChild(emptyHeart);
 		var lat = arrayOfOutlets[i].lat;
 		var lng = arrayOfOutlets[i].lng;
-		
-		getReverseGeocodingData(lat,lng,i);
 		var eName = arrayOfOutlets[i].name;
 		console.log(eName);
 		var eCloseTime = arrayOfOutlets[i].closeTime;
@@ -323,6 +322,18 @@ function componentClickable(component, eName, eAddress, eCloseTime, eDescription
 		sBackButton.addEventListener("click", function(){
 			selection.style.zIndex = -10;
 			section.style.zIndex = 100;
+			sName.innerHTML = "";
+			sAddress.innerHTML = "";
+			sCloseTime.innerHTML = "";
+			sDescription.innerHTML = "";
+			sAvaliableNumber.innerHTML = "";
+			sTotalNumber.innerHTML = "";
+			if(eIsFree == 1){
+				selection.removeChild(tick);
+			}
+			else if(eIsFree == 0){
+				selection.removeChild(dollar);
+			}
 		});
 		};
 }

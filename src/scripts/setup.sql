@@ -15,7 +15,7 @@ lng NUMERIC NOT NULL ,
 status INT DEFAULT 1, 
 reports INT,
 prize_totale INT,
-prize_ocupate INT,
+prize_ocupate INT DEFAULT 0,
 ora_inchidere TEXT,
 favorite INT,
 isfree INT

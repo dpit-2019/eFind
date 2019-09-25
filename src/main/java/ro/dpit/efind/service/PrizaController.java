@@ -18,7 +18,7 @@ public class PrizaController  {
         try {
             Class.forName("org.postgresql.Driver");
             connectionPool = BasicConnectionPool
-                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "password");
+                    .create("jdbc:postgresql://localhost:5432/efind", "postgres", "the0chosen0one");
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public final void run() {
                     try {

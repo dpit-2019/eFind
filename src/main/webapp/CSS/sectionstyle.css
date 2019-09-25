@@ -278,7 +278,7 @@ input.searchBar {
 	height: auto;
 	width: auto;
 	font-family: Verdana, Geneva, sans-serif;
-	font-size: 1vw;
+	font-size: 0.9vw;
 	font-weight: bold;
 	color: rgba(0,0,0,0.6);
 	position: absolute;
@@ -291,10 +291,10 @@ input.searchBar {
 	height: auto;
 	width: auto;
 	font-family: Verdana, Geneva, sans-serif;
-	font-size: 1vw;
+	font-size: 0.9vw;
 	color: rgba(0,0,0,0.3);
 	position: absolute;
-	left: 45%;
+	left: 47.5%;
 	top: 68%;
 	cursor: text;
 }
