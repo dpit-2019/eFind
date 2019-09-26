@@ -72,7 +72,7 @@ function initMap() {
           });
           map.fitBounds(bounds);
         });
-		
+
 		
 	map.addListener('center_changed', function() {
    /// alert(map.getBounds());
@@ -120,18 +120,129 @@ function initMap() {
     scaledSize: new google.maps.Size(40, 45), // scaled size
     origin: new google.maps.Point(0,0), // origin
 		  anchor: new google.maps.Point(40, 45)};
+		  if(priza.status == 1){
 		  var marker = new google.maps.Marker({
    		position: {lat:priza.lat, lng: priza.lng},
 		icon: image,
    		map: map,
-   		title:""+priza.name+""});
+   		title:""+priza.name+""})
+		marker.addListener('click', function(){
+			var section = document.getElementById("section");
+		var selection = document.getElementById("selection");
+		var sName = document.getElementById("sName");
+		var sAddress = document.getElementById("sAddress");
+		var sCloseTime = document.getElementById("sCloseTime");
+		var sDescription = document.getElementById("sDescription");
+		var sAvaliableNumber = document.getElementById("sAvaliableNumber");
+		var sTotalNumber = document.getElementById("sTotalNumber");
+		var sBackButton = document.getElementById("sBackButton");
+		section.style.zIndex = -10;
+		selection.style.zIndex = 100;
+		sName.innerHTML = "";
+		sName.innerHTML += priza.name;
+		sAddress.innerHTML = "";
+		getReverseGeocodingData2(priza.lat,priza.lng);
+		sAddress.innerHTML = eAddress;
+		if(priza.isFree == 1){
+			
+			var tick = document.createElement("div");
+			tick.id = "sTick";
+			selection.appendChild(tick);
+		}
+		else if(priza.isFree == 0 ){
+			var dollar = document.createElement("div");
+			dollar.id = "sDollar";
+			selection.appendChild(dollar);
+		}
+		sCloseTime.innerHTML = "";
+		sCloseTime.innerHTML += "Closes at " + priza.closeTime;
+		sDescription.innerHTML = "";
+		sDescription.innerHTML += priza.description;
+		sAvaliableNumber.innerHTML = "";
+		sAvaliableNumber.innerHTML += priza.occupiedOutlets;
+		sTotalNumber.innerHTML = "";
+		sTotalNumber.innerHTML += "/" + priza.totalOutlets + " outlets occupied";
+		
+		sBackButton.addEventListener("click", function(){
+			selection.style.zIndex = -10;
+			section.style.zIndex = 100;
+			sName.innerHTML = "";
+			sAddress.innerHTML = "";
+			sCloseTime.innerHTML = "";
+			sDescription.innerHTML = "";
+			sAvaliableNumber.innerHTML = "";
+			sTotalNumber.innerHTML = "";
+			if(priza.isFree == 1){
+				selection.removeChild(tick);
+			}
+			else if(priza.isFree == 0){
+				selection.removeChild(dollar);
+			}
+			var takeButton = document.getElementById("sTakeButton");
+		takeButton.onclick = function(){
+			var takeRequest = new XMLHttpRequest();
+			takeRequest.open("GET", "http://localhost:8080/efind-0.0.1/ocupa?id="+priza.id,true);
+			takeRequest.send();
+			selection.style.zIndex = -10;
+			section.style.zIndex = 100;
+			sName.innerHTML = "";
+			sAddress.innerHTML = "";
+			sCloseTime.innerHTML = "";
+			sDescription.innerHTML = "";
+			sAvaliableNumber.innerHTML = "";
+			sTotalNumber.innerHTML = "";
+			if(eIsFree == 1){
+				selection.removeChild(tick);
+			}
+			else if(eIsFree == 0){
+				selection.removeChild(dollar);
+			}
+		};
+		});
 	});
-	  
+		  }
    	
- }
- };
- 
  });
+ }
+ 
+ };
+});
+
+google.maps.event.addListener(map, "click", function (e) {
+    var lat = e.latLng.lat();
+	var lng = e.latLng.lng();
+	console.log(lat,lng);
+	var coverSheet = document.getElementById("coverSheet");
+	var addDialog = document.getElementById("addDialog");
+	coverSheet.style.zIndex = 150;
+	addDialog.style.zIndex = 200;
+	var requestButton = document.getElementById("addSaveButton");
+	requestButton.addEventListener("click", function(){
+		var nameInput = document.getElementById("addName");
+		console.log(nameInput.value);
+		var outletType = document.getElementById("addTypeSelect");
+		var descriptionInput = document.getElementById("addDescription");
+		var outletNumberInput = document.getElementById("addTotal");
+		var isFreeInput = document.getElementById("addIsFree");
+		var closingTimeInput = document.getElementById("addCloseTime");
+		var addRequest = new XMLHttpRequest();
+		addRequest.open("GET", "http://localhost:8080/efind-0.0.1/addPriza?nume='"+nameInput.value+"'&tip="+outletType.value+"&descriere='"+descriptionInput.value+"'&lat="+lat+"&lng="+lng+"&total="+outletNumberInput.value+"&isfree="+isFreeInput.value+"&ora='"+closingTimeInput.value+"'", true);
+		addRequest.send();
+		coverSheet.style.zIndex = -80;
+		addDialog.style.zIndex = -80;
+		nameInput.value='';
+		outletType.value='';
+		descriptionInput.value='';
+		outletNumberInput.value='';
+		isFreeInput.value='';
+		closingTimeInput.value='';
+	});
+	var exitButton = document.getElementById("addExitButton");
+	exitButton.onclick = function(){
+		coverSheet.style.zIndex = -80;
+		addDialog.style.zIndex = -80;
+	}
+});
 }
 
 function Priza(id,name,type,description,lat,lng,status,reports,totalOutlets,occupiedOutlets,favorite,closeTime,isFree) {
@@ -187,7 +298,7 @@ function getReverseGeocodingData(lat, lng,i) {
         }
     });
 }
-function getReverseGeocodingData2(lat, lng,i) {
+function getReverseGeocodingData2(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     // This is making the Geocode request
     var geocoder = new google.maps.Geocoder();
@@ -206,6 +317,7 @@ function getReverseGeocodingData2(lat, lng,i) {
 function addElementsToList(){
 	var list = document.getElementById("list");
 	for(i=0;i<=arrayOfOutlets.length-1;i++){
+		if(arrayOfOutlets[i].status == 1){
 		var component = document.createElement('div');
 		component.className='component';
 		list.appendChild(component);
@@ -280,6 +392,7 @@ function addElementsToList(){
 		componentClickable(component, eName, eAddress, eCloseTime, eDescription, eAvaliableNumber, eTotalNumber, eIsFree,arrayOfOutlets[i].lat,arrayOfOutlets[i].lng,i);
 		list.appendChild(component);
 	}
+	}
 }
 
 function componentClickable(component, eName, eAddress, eCloseTime, eDescription, eAvaliableNumber, eTotalNumber, eIsFree,lat,lng,i){
@@ -317,7 +430,7 @@ function componentClickable(component, eName, eAddress, eCloseTime, eDescription
 		sAvaliableNumber.innerHTML = "";
 		sAvaliableNumber.innerHTML += eAvaliableNumber;
 		sTotalNumber.innerHTML = "";
-		sTotalNumber.innerHTML += "/" + eTotalNumber + " outlets avaliable";
+		sTotalNumber.innerHTML += "/" + eTotalNumber + " outlets occupied";
 		
 		sBackButton.addEventListener("click", function(){
 			selection.style.zIndex = -10;
@@ -335,8 +448,31 @@ function componentClickable(component, eName, eAddress, eCloseTime, eDescription
 				selection.removeChild(dollar);
 			}
 		});
+		var takeButton = document.getElementById("sTakeButton");
+		takeButton.onclick = function(){
+			var takeRequest = new XMLHttpRequest();
+			takeRequest.open("GET", "http://localhost:8080/efind-0.0.1/ocupa?id="+arrayOfOutlets[i].id,true);
+			takeRequest.send();
+			selection.style.zIndex = -10;
+			section.style.zIndex = 100;
+			sName.innerHTML = "";
+			sAddress.innerHTML = "";
+			sCloseTime.innerHTML = "";
+			sDescription.innerHTML = "";
+			sAvaliableNumber.innerHTML = "";
+			sTotalNumber.innerHTML = "";
+			if(eIsFree == 1){
+				selection.removeChild(tick);
+			}
+			else if(eIsFree == 0){
+				selection.removeChild(dollar);
+			}
 		};
-}
+		};
+		};
+
+
+
 
 var searchButton=document.getElementById("directions");
 searchButton.onclick = function(){
