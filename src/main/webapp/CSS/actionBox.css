@@ -1,0 +1,92 @@
+body {
+	margin: 0%;
+	overflow: hidden;
+	background-color: #000;
+}
+
+#actionBox {
+	height: 40%;
+	width: 30%;
+	background-color: #FFFFFF;
+	border-radius: 0.6vw;
+	position: absolute;
+	z-index: -80;
+	top: 34%;
+	left: 34%;
+}
+
+#actionTopSide {
+	width: 100%;
+	height: 15%;
+	position: relative;
+	border-top-left-radius: 0.4vw;
+	border-top-right-radius: 0.4vw;
+	background-color: #146d8e;
+}
+
+#actionExitButton {
+	height: 57%;
+	width: 6%;
+	position: absolute;
+	background: url("../img/exit.png") no-repeat;
+	background-size: 100%;
+	right: 5%;
+	top: 20%;
+	cursor: pointer;
+}
+
+#actionTitle {
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 25%;
+	left: 38%;
+	color: #71798B;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.7vw;
+	font-weight: bold;
+}
+
+#actionYesButton {
+	width: 30%;
+	height: 15%;
+	position: absolute;
+	background-color: #10b1dc;
+	border-radius: 0.3vw;
+	bottom: 10%;
+	left: 15%;
+	cursor: pointer;
+}
+
+#actionYesText {
+	width: auto;
+	height: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.5vw;
+	color: #FFFFFF;
+	position: absolute;
+	left: 30%;
+	top: 20%;
+}
+
+#actionNoButton {
+	width: 30%;
+	height: 15%;
+	position: absolute;
+	background-color: #767a82;
+	border-radius: 0.3vw;
+	bottom: 10%;
+	left: 55%;
+	cursor: pointer;
+}
+
+#actionNoText {
+	width: auto;
+	height: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.5vw;
+	color: #FFFFFF;
+	position: absolute;
+	left: 35%;
+	top: 20%;
+}

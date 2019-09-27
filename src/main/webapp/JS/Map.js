@@ -74,8 +74,10 @@ function initMap() {
         });
 
 		
-	map.addListener('center_changed', function() {
+	map.addListener('idle', function() {
    /// alert(map.getBounds());
+   
+        markers = [];
    var bounds =  map.getBounds();
    var ne = bounds.getNorthEast();
    var sw = bounds.getSouthWest();
@@ -207,6 +209,10 @@ function initMap() {
  
  };
 });
+
+ function clearMarkers() {
+        setMapOnAll(null);
+      }
 
 google.maps.event.addListener(map, "click", function (e) {
     var lat = e.latLng.lat();
